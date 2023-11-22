@@ -22,10 +22,9 @@ const SearchBar = () => {
     const url = queryString.stringifyUrl(
       { url: "/", query: { searchTerm: data.searchTerm } },
       { skipNull: true }
-
-      );
-      router.push(url)
-      reset()
+    );
+    router.push(url);
+    reset();
   };
   return (
     <div className="flex items-center">
