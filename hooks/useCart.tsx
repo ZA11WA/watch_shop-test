@@ -28,7 +28,7 @@ interface Props {
 }
 
 export const CartContextProvider = (props: Props) => {
-  const [cartTotalQty, setCartTotalQty] = useState(10);
+  const [cartTotalQty, setCartTotalQty] = useState(0);
   const [cartTotalAmount, setCartTotalAmount] = useState(0);
   const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
     null
@@ -76,7 +76,7 @@ export const CartContextProvider = (props: Props) => {
       } else {
         updatedCart = [product];
       }
-      toast.success("Product added to cart");
+      toast.success("Produkt dodany do koszyka");
       localStorage.setItem("CartItem", JSON.stringify(updatedCart));
       return updatedCart;
     });
@@ -89,7 +89,7 @@ export const CartContextProvider = (props: Props) => {
           return item.id !== product.id;
         });
         setCartProducts(fillteredProducts);
-        toast.success("Product removed");
+        toast.success("Product usunięty z koszyka");
         localStorage.setItem("CartItem", JSON.stringify(fillteredProducts));
       }
     },
@@ -100,8 +100,8 @@ export const CartContextProvider = (props: Props) => {
   const handleCartQtyIncrease = useCallback(
     (product: CartProductType) => {
       let updatedCart;
-      if (product.quantity === 99) {
-        return toast.error("Oops! Maximum reached!");
+      if (product.quantity === 10) {
+        return toast.error("Maximum osiągnięte");
       }
       if (cartProducts) {
         updatedCart = [...cartProducts];
@@ -125,7 +125,7 @@ export const CartContextProvider = (props: Props) => {
     (product: CartProductType) => {
       let updatedCart;
       if (product.quantity === 1) {
-        return toast.error("Oops! Minimum reached!");
+        return toast.error("Minimum osiągnięte");
       }
       if (cartProducts) {
         updatedCart = [...cartProducts];

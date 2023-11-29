@@ -1,40 +1,45 @@
-"use client";
-
-import { formatPrice } from "@/utils/formatPrice";
-import { truncateText } from "@/utils/truncateText";
-import { Rating } from "@mui/material";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+'use client'
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { truncateText } from '@/utils/truncateText';
+import { formatPrice } from '@/utils/formatPrice';
 
 interface ProductCardProps {
   data: any;
 }
+
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   const router = useRouter();
 
-  const productRating =
-    data.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
-    data.reviews.length;
-
   return (
-    <div onClick={()=> router.push(`/product/${data.id}`)} className=" col-span-1 cursor-pointer border-[1.2px] border-slate-200 bg-slate-50 rounded-sm p-2 transition hover:scale-105 text-center text-sm">
-      <div className="flex flex-col items-center w-full gap-1">
+    
+    <div
+      onClick={() => router.push(`/product/${data.id}`)}
+      //className=" relative max-w-sm min-w-[200px] bg-stone-100 shadow-md rounded-3xl p-2 mx-1 my-3   cursor-pointer transition transform hover:scale-105"
+      className="dark:bg-stone-800  col-span-1 cursor-pointer border-[1.2px] border-stone-100  shadow-sm rounded-3xl  bg-slate-50  p-2 transition hover:scale-105 mt-2"
+    >
+      <div className="overflow-x-hidden rounded-2xl relative">
         <div className="aspect-square overflow-hidden relative w-full">
           <Image
             fill
             src={data.images[0].image}
             alt={data.name}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover rounded-2xl"
           />
         </div>
-        <div className="mt-4">{truncateText(data.name)}</div>
-        {/* <div>
-          <Rating value={productRating} readOnly />
+      </div>
+      <div className="mt-4 pl-2 mb-2 flex flex-col">
+        <div className="mb-2 md:mb-0">
+          <p className="text-center text-sm font-semibold text-gray-900 dark:text-white mb-0">
+            {truncateText(data.name)}
+          </p>
+          <p className="text-left text-sm text-gray-800 dark:text-white mt-1">
+            {formatPrice(data.price)}
+          </p>
         </div>
-        <div>{data.reviews.length} reviews</div>
-        <div className="font-semibold">{formatPrice(data.price)}</div> */}
       </div>
     </div>
+    
   );
 };
 

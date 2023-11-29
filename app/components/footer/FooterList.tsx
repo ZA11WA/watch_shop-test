@@ -1,13 +1,19 @@
 import React from "react";
-interface FooterListProps {
-  children: React.ReactNode;
-}
+import Container from "../Container";
 
-const FooterList: React.FC<FooterListProps> = ({ children }) => {
+
+const FooterList = () => {
   return (
-    <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 mb-6 flex flex-col gap-2">
-      {children}
-    </div>
+    <footer className="bg-stone-400 text-slate-200 text-sm mt-15">
+      <Container>
+        <div className="flex flex-col md:flex-row justify-center pt-4 pb-2">
+          
+          
+          <p>&copy; 2023 Tempo Zegara. Wszelkie prawa zastrzeżone.</p>
+          
+        </div>
+      </Container>
+    </footer>
   );
 };
 

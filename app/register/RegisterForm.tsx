@@ -76,8 +76,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
 
   return (
     <>
-      <Heading title="Sun up for shop" />
-      <hr className="bg-slate-300 w-full h-px" />
+      <Heading title="Rejestracja" />
+      <hr className="bg-gray-300 w-full h-px" />
       <Input
         id="name"
         label="Name"
@@ -104,20 +104,20 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
         type="password"
       />
       <Button
-        label={isLoading ? "Loading" : "Sign Up"}
+        label={isLoading ? "Ładowanie" : "Zarejestruj się"}
         onClick={handleSubmit(onSubmit)}
       />
       <Button
         outline
-        label="Continue with Google"
+        label="Kontynuuj z Google"
         icon={AiOutlineGoogle}
         onClick={() => {signIn('google')}}
       />
 
       <p className="text-sm">
-        Already have an account?{""}
+        Masz już konto?{""}
         <Link className="underline" href={"/login"}>
-          Log in
+          Zaloguj się
         </Link>
       </p>
     </>

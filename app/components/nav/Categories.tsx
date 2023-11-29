@@ -14,15 +14,16 @@ const Categories = () => {
   return (
     <div className="bg-white">
       <Container>
-        <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+        <div className="flex flex-row items-center justify-between md:justify-center gap-8 md:gap-12 overflow-x-auto flex-nowrap">
           {categories.map((item) => (
             <Category
               key={item.label}
               label={item.label}
               icon={item.icon}
+              
               selected={
                 category === item.label ||
-                (category === null && item.label === "All")
+                (category === null && item.label === "Wszystkie")
               }
             />
           ))}

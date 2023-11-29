@@ -5,10 +5,10 @@ import CartClient from "./CartClient";
 const Cart = async () => {
     const currentUser = await getCurrentUser()
     return ( 
-        <div className="pt-8">
-            <Container>
+        <div className="flex flex-col pt-8 p-1">
+            
                 <CartClient currentUser = {currentUser}/>
-            </Container>
+            
         </div>
      );
 }

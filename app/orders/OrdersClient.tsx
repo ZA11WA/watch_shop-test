@@ -147,7 +147,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl">
+    <div className="max-w-[1150px] m-auto text-xl bg-stone-50 rounded-xl shadow-lg">
       <div className="mb-4 mt-8">
         <Heading title="Orders" center />
       </div>

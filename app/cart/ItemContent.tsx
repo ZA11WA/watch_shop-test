@@ -1,60 +1,52 @@
-"use client";
-
+'use client'
 import { formatPrice } from "@/utils/formatPrice";
 import { CartProductType } from "../product/[productId]/ProductDetails";
 import Link from "next/link";
-import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";
 import SetQuantity from "../components/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
+import { MdDelete } from "react-icons/md";
 
 interface ItemContentProps {
   item: CartProductType;
 }
 
 const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
-  const {
-    handleRemoveProductFromCard,
-    handleCartQtyIncrease,
-    handleCartQtyDecrease,
-  } = useCart();
+  const { handleRemoveProductFromCard, handleCartQtyIncrease, handleCartQtyDecrease } = useCart();
+
   return (
-    <div className="grid grid-cols-5 text-xs md:text-sm gap-4 border--t-[1.5px] border-slate-200 py-4 items-center">
-      <div className="col-span-2 justify-self-start flex gap-2 md:gap-4">
+    <div className="grid grid-cols-5 text-sm md:text-base gap-4 border-t-2 border-gray-300 py-4 items-center">
+      <div className="col-span-2 justify-self-start flex gap-4 items-center">
         <Link href={`/product/${item.id}`}>
-          <div className="relative w-[70px] aspect-square">
+          <div className="relative w-20 h-20">
             <Image
               src={item.selectedImg.image}
               alt={item.name}
-              fill
-              className="object-contain"
+              layout="fill"
+              objectFit="contain"
             />
           </div>
         </Link>
         <div className="flex flex-col justify-between">
-          <Link href={`/product/${item.id}`}>{truncateText(item.name)}</Link>
-          <div>{item.selectedImg.color}</div>
-          <div className="w-[70px]">
-            <button
-              className="text-slate-500 underline"
-              onClick={() => handleRemoveProductFromCard(item)}
-            >
-              Remove
-            </button>
-          </div>
+          <Link href={`/product/${item.id}`} className="text-gray-800 font-semibold">
+            {item.name}
+          </Link>
+          <div className="text-gray-600">{item.selectedImg.color}</div>
+          <button
+            onClick={() => handleRemoveProductFromCard(item)}
+            className="text-gray-500 underline focus:outline-none"
+          >
+            <MdDelete size={18} />
+          </button>
         </div>
       </div>
       <div className="justify-self-center">{formatPrice(item.price)}</div>
-      <div className="justify-self-center ">
+      <div className="justify-self-center">
         <SetQuantity
           cartCounter={true}
           cartProduct={item}
-          handleQtyIncrease={() => {
-            handleCartQtyIncrease(item);
-          }}
-          handleQtyDecrease={() => {
-            handleCartQtyDecrease(item);
-          }}
+          handleQtyIncrease={() => handleCartQtyIncrease(item)}
+          handleQtyDecrease={() => handleCartQtyDecrease(item)}
         />
       </div>
       <div className="justify-self-end font-semibold">

@@ -60,8 +60,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
 
   return (
     <>
-      <Heading title="Sign in to Shop" />
-      <hr className="bg-slate-300 w-full h-px" />
+      <Heading title="Zaloguj się" />
+      <hr className="bg-gray-300 w-full h-px" />
 
       <Input
         id="email"
@@ -81,20 +81,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
         type="password"
       />
       <Button
-        label={isLoading ? "Loading" : "Log in"}
+        label={isLoading ? "Ładowanie" : "Zaloguj"}
         onClick={handleSubmit(onSubmit)}
       />
       <Button
         outline
-        label="Continue with Google"
+        label="Kontynuuj z Google"
         icon={AiOutlineGoogle}
         onClick={() => {signIn('google')}}
       />
 
       <p className="text-sm">
-        Do not have an account?{""}
+        Nie masz konta?{""}
         <Link className="underline" href={"/register"}>
-          Sign up
+          Zarejestruj się
         </Link>
       </p>
     </>

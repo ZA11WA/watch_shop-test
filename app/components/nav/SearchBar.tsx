@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
+// ... (imports)
+
 const SearchBar = () => {
   const router = useRouter();
   const {
@@ -26,23 +28,46 @@ const SearchBar = () => {
     router.push(url);
     reset();
   };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSubmit(onSubmit)();
+    }
+  };
+
   return (
-    <div className="flex items-center">
-      <input
-        {...register("searchTerm")}
-        autoComplete="off"
-        type="text"
-        placeholder="Explore Eshop"
-        className="p-2 border-gray-300 rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
-      />
-      <button
-        onClick={handleSubmit(onSubmit)}
-        className="bg-slate-700 hover:opacity-80 text-white p-2 rounded-r-md"
-      >
-        Search
-      </button>
+    <div className="max-w-md mx-auto">
+      <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+        <div className="grid place-items-center h-full w-12 text-gray-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+
+        <input
+          {...register("searchTerm")}
+          autoComplete="off"
+          type="text"
+          id="search"
+          placeholder="Search something.."
+          className="peer h-full w-64 outline-none text-sm text-gray-700 pr-2 dark:bg-white" // Adjust the width here
+          onKeyPress={handleKeyPress}
+        />
+      </div>
     </div>
   );
 };
 
 export default SearchBar;
+

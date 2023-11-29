@@ -8,11 +8,11 @@ const Login = async () => {
     const currentUser = await getCurrentUser()
     return ( 
 
-        <Container>
+        
             <FormWrap>
                 <LoginForm currentUser = {currentUser}/>
             </FormWrap>
-        </Container>
+        
      );
 }
  

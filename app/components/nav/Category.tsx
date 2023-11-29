@@ -1,4 +1,6 @@
 'use client'
+import { ImageType } from "@/app/admin/add-products/AddProductForm";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import queryString from "query-string";
@@ -9,14 +11,15 @@ interface CategoryProps {
   label: string;
   icon: IconType;
   selected?: boolean;
+  
 }
 
-const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
+const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected,  }) => {
   const router = useRouter();
   const params = useSearchParams();
 
   const handleClick = useCallback(() => {
-    if (label == "All") {
+    if (label == "Wszystkie") {
       router.push("/");
     } else {
       let currentQuery = {};
@@ -44,15 +47,17 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   return (
     <div
       onClick={handleClick}
-      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer
+      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-gray-700 transition cursor-pointer
         ${
           selected
-            ? "border-b-slate-800 text-slate-800"
-            : "border-transparent text-slate-500"
+            ? "border-b-stone-800 text-gray-800"
+            : "border-transparent text-gray-500"
         }
         `}
     >
+      
       <Icon size={20} />
+
       <div className="font-medium text-sm">{label}</div>
     </div>
   );

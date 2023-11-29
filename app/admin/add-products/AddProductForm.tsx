@@ -25,6 +25,7 @@ import {
 import { IconType } from "react-icons";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import SelectImage from "@/app/components/inputs/SelectImage";
 
 export type ImageType = {
   color: string;
@@ -42,6 +43,7 @@ const AddProductForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[] | null>();
   const [isProductCreated, setIsProductCreated] = useState(false);
+  
 
   const {
     register,
@@ -187,9 +189,13 @@ const AddProductForm = () => {
       return prev;
     });
   }, []);
+  
   return (
     <>
-      <Heading title="Dodaj produkt" center />
+    
+    
+      <Heading title="Dodaj produkt" center/>
+      <div className="space-y-2">
       <Input
         id="name"
         label="Name"
@@ -197,6 +203,7 @@ const AddProductForm = () => {
         register={register}
         errors={errors}
         required
+        
       />
       <Input
         id="price"
@@ -222,12 +229,14 @@ const AddProductForm = () => {
         register={register}
         errors={errors}
         required
-      />
+      /> 
       <CustomCheckBox
         id="inStock"
         register={register}
         label="Ten produkt jest dostepny"
+      
       />
+      </div>
       <div className="w-full font-medium">
         <div className="mb-2 font-semibold">Wybierz kategorie</div>
         <div className="grid grid-col-2 gap-3 md:grid-cols-3 max-h[50vh] overflow-y-auto">
@@ -250,9 +259,9 @@ const AddProductForm = () => {
       </div>
       <div className="w-full flex flex-col flex-wrap gap-4">
         <div className="font-bold">
-          Wybierz dostepny produkt, color i wrzuc zdjecie
+          Wrzuć zdjęcie
         </div>
-        <div className="text-sm">text.....</div>
+        
       </div>
       <div>
         <div className="grid grid-cols-3 gap-3">
@@ -264,8 +273,9 @@ const AddProductForm = () => {
                 addImageToState={addImageToState}
                 removeImageFromState={removeImageToState}
                 isProductCreated={isProductCreated}
-              />
-            );
+                />
+                );
+                
           })}
         </div>
       </div>
@@ -273,6 +283,7 @@ const AddProductForm = () => {
         label={isLoading ? "Loading..." : "Add Product"}
         onClick={handleSubmit(onSubmit)}
       />
+      
     </>
   );
 };
