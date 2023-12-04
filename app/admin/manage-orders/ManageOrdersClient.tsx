@@ -43,7 +43,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   }
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 220 },
+    { field: "id", headerName: 'ID', width: 220 },
     { field: "customer", headerName: "Customer Name", width: 130 },
     {
       field: "amount",
@@ -51,7 +51,9 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       width: 130,
       renderCell: (params) => {
         return (
-          <div className="font-bold text-slate-800">{params.row.amount}</div>
+          <div className="font-bold text-slate-800 dark:text-white">
+            {params.row.amount}
+          </div>
         );
       },
     },
@@ -187,7 +189,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   }, []);
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl">
+    <div className="max-w-[1150px] m-auto text-xl dark:text-white dark:bg-neutral-900 rounded-lg shadow-sm">
       <div className="mb-4 mt-8">
         <Heading title="Manage Orders" center />
       </div>

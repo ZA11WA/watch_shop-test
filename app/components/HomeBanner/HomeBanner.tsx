@@ -1,24 +1,11 @@
 'use client'
-
-import Image, { StaticImageData } from "next/image";
-import image1 from '../images/IMG_0523.jpg'
-import image2 from '../images/watch_2.jpg'
-import image3 from '../images/IMG_0523.jpg'
-
-
-// components/HomeBanner.tsx
-
-// components/HomeBanner.tsx
-
-// components/HomeBanner.tsx
-
-// components/HomeBanner.tsx
-
-// components/HomeBanner.tsx
-
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import 'tailwindcss/tailwind.css';
 
+import image1 from '../images/banner1.png';
+import image2 from '../images/banner1.png';
+import image3 from '../images/banner1.png';
 
 
 const HomeBanner: React.FC = () => {
@@ -37,24 +24,25 @@ const HomeBanner: React.FC = () => {
   };
 
   useEffect(() => {
-    // Przewijanie obrazów co 10 sekund
     const intervalId = setInterval(goToNextImage, intervalDuration);
 
-    // Czyszczenie interwału przy odmontowywaniu komponentu
     return () => clearInterval(intervalId);
   }, [currentImageIndex]);
 
   return (
-    <div className="relative w-full h-96">
+    <div className="relative w-full h-96 overflow-hidden">
       <div
-        className="w-full h-full bg-cover bg-center relative transition-opacity duration-1000 rounded-md"
-        style={{
-          backgroundImage: `url(${images[currentImageIndex].src})`,
-          opacity: 1, // Początkowa wartość przezroczystości
-        }}
+        className=""
       >
-       {/* Strzałka w lewo */}
-       <div
+        <Image
+          src={images[currentImageIndex]}
+          alt={`Image ${currentImageIndex + 1}`}
+          fill={true}
+        
+        />
+
+        {/* Strzałka w lewo */}
+        <div
           className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-4xl"
           onClick={goToPreviousImage}
         >

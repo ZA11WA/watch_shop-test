@@ -12,7 +12,7 @@ const Categories = () => {
 
   if (!isMainPage) return null;
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-neutral-800">
       <Container>
         <div className="flex flex-row items-center justify-between md:justify-center gap-8 md:gap-12 overflow-x-auto flex-nowrap">
           {categories.map((item) => (

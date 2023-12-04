@@ -30,7 +30,7 @@ export default async function RootLayout({
       <body
         className={`${poppins.className}
 
-      text-gray-700 dark:bg-gray-800  `}
+      text-black dark:bg-neutral-800  `}
       >
         <Toaster
           toastOptions={{

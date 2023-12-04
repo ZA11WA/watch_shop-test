@@ -18,11 +18,11 @@ const Order = async ({params} : {params: IPrams}) => {
 
     if (!order) return <NullData title="No order"></NullData>
     return ( 
-        <div className="">
-            <Container>
+        <div className="p-2">
+            
                <OrderDetails order = {order}/> 
               
-            </Container>
+            
         </div>
      );
 }

@@ -26,14 +26,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       <div className="relative z-30">
         <div
           onClick={toogleOpen}
-          className="p-2 border-[1px] border-gray-700 flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700"
+          className="p-2 border-[1px] border-neutral-900-700 dark:border-neutral-700 flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700 dark:text-white"
         >
           <Avatar src={currentUser?.image}/>
           <AiFillCaretDown />
         </div>
         {isOpen && (
           <div
-            className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer
+            className="absolute rounded-md shadow-md w-[170px] bg-white dark:bg-neutral-700 overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer
           "
           >
             {currentUser ? (

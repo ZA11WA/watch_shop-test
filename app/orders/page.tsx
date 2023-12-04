@@ -20,10 +20,10 @@ const Orders = async () => {
   }
 
   return (
-    <div className="pt-8">
-      <Container>
+    <div className="pt-8 p-1">
+      
         <OrdersClient orders = {orders} />
-      </Container>
+      
     </div>
   );
 };

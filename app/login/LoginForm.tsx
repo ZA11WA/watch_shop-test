@@ -70,6 +70,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
         register={register}
         errors={errors}
         required
+        
       />
       <Input
         id="password"

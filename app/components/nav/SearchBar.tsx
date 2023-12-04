@@ -36,9 +36,9 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-        <div className="grid place-items-center h-full w-12 text-gray-300">
+    <div className="max-w-md mx-auto ">
+      <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden dark:bg-neutral-700">
+        <div className="grid place-items-center h-full w-12 text-gray-300 dark:text-white ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -61,7 +61,7 @@ const SearchBar = () => {
           type="text"
           id="search"
           placeholder="Search something.."
-          className="peer h-full w-64 outline-none text-sm text-gray-700 pr-2 dark:bg-white" // Adjust the width here
+          className="peer h-full w-64 outline-none text-sm text-gray-700 dark:text-white pr-2 dark:bg-neutral-700" // Adjust the width here
           onKeyPress={handleKeyPress}
         />
       </div>

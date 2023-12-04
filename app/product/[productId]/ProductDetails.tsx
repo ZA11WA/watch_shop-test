@@ -98,14 +98,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   const theme = useTheme();
   return (
-    <div className="border-[1.5px] border-stone-300 px-2 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="border-[1.5px] border-stone-300  px-2 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-12">
       <ProductImage
         cartProduct={cartProduct}
         product={product}
         handleColorSelect={handleColorSelect}
       />
-      <div className="flex flex-col gap-1 text-gray-500 text-sm p-2">
-        <h2 className=" text-4xl font-medium text-gray-700">{product.name}</h2>
+      <div className="flex flex-col gap-1 text-gray-500 dark:text-white text-sm p-2">
+        <h2 className=" text-4xl font-medium text-gray-700 dark:text-white">{product.name}</h2>
 
         <Horizontal />
         <div className="text-justify text-base">{product.description}</div>
@@ -122,7 +122,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         <Horizontal />
         {isProductInCart ? (
           <div className="">
-            <p className="mb-2 text-slate-500 flex items-center gap-1">
+            <p className="mb-2 text-slate-500 dark:text-white flex items-center gap-1">
               <MdCheckCircle className="text-teal-400" size={20} />
               <span>Produkt dodany do karty</span>
             </p>

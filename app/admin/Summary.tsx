@@ -76,24 +76,20 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   const summaryKeys = Object.keys(summaryData);
 
   return (
-    <div className="max-2-[1150px] mx-auto bg-stone-50">
-      <div className="mb-4 mt-2">
+    <div className="max-2-[1150px] mx-auto  dark:bg-neutral-800">
+      <div className="mb-4 mt-2 dark:text-white">
         <Heading title="Statystyki sklepu" center />
       </div>
-      <div className="grid grid-cols-6 gap-3 max-h-50vh overflow-y-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-3 max-h-50vh overflow-y-auto">
         {summaryKeys &&
           summaryKeys.map((key) => {
             return (
               <div
                 key={key}
-                className="rounded-3xl border-2 p-4 flex flex-col items-center  gap-2 bg-gray-100 border-stone-500 shadow-md transition"
+                className="rounded-3xl border-2 p-4 flex flex-col items-center gap-2 dark:bg-neutral-900 border-neutral-100 dark:border-neutral-600 dark:text-white shadow-md transition"
               >
-                <div className="text-xl  md:text-4xl font-extrabold text-center">
-                  {summaryData[key].label === "Total Sale" ? (
-                    <>{formatNumber(summaryData[key].digit)}</>
-                  ) : (
-                    <>{formatNumber(summaryData[key].digit)}</>
-                  )}
+                <div className="text-xl md:text-4xl font-extrabold text-center dark:text-white">
+                  {formatNumber(summaryData[key].digit)}
                 </div>
                 <div className="text-center"></div>
                 <div className="text-center">{summaryData[key].label}</div>

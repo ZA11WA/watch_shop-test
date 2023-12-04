@@ -10,12 +10,12 @@ const AddProducts = async () => {
     return <NullData title="Oops! Access denied" />;
   }
   return (
-    <div className="p-8 bg-stone-50">
-      <Container>
-        {/* <FormWrap> */}
+    <div className="p-8 dark:bg-neutral-800">
+      
+        
           <AddProductForm />
-        {/* </FormWrap> */}
-      </Container>
+        
+      
     </div>
   );
 };

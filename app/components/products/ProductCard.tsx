@@ -16,7 +16,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
     <div
       onClick={() => router.push(`/product/${data.id}`)}
       //className=" relative max-w-sm min-w-[200px] bg-stone-100 shadow-md rounded-3xl p-2 mx-1 my-3   cursor-pointer transition transform hover:scale-105"
-      className="dark:bg-stone-800  col-span-1 cursor-pointer border-[1.2px] border-stone-100  shadow-sm rounded-3xl  bg-slate-50  p-2 transition hover:scale-105 mt-2"
+      className="dark:bg-neutral-600  col-span-1 cursor-pointer  border-stone-100   shadow-sm rounded-3xl  bg-slate-50  p-2 transition hover:scale-105 mt-2"
     >
       <div className="overflow-x-hidden rounded-2xl relative">
         <div className="aspect-square overflow-hidden relative w-full">

@@ -13,12 +13,12 @@ const NavBar = async () => {
   const currentUser = await getCurrentUser();
 
   return (
-    <div className="sticky top-0 w-full bg-stone-400 z-30 shadow-md mb-2">
+    <div className="sticky top-0 w-full bg-stone-100 dark:bg-neutral-900 z-30 shadow-md mb-1">
       <div className="py-4 border-b-[1px]">
         <Container>
           <div className="flex items-center justify-between gap-3 md:gap-0">
             <Link
-              className={`${montserrat.className} font-bold text-2xl text-gray-700 uppercase`}
+              className={`${montserrat.className} font-bold text-2xl text-neutral-950 dark:text-white uppercase`}
               href={"/"}
             >
               Tempo Zegara
@@ -29,7 +29,7 @@ const NavBar = async () => {
               </div>
             }
 
-            <div className="flex items-center gap-8 md:gap-12">
+            <div className="flex items-center gap-8 md:gap-12 dark:text-white">
               <ThemeSwitcher/>
               <CartCount />
               

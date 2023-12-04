@@ -13,8 +13,8 @@ const AdminNavItem: React.FC<AdminNavItemProps> = ({
 }) => {
   return (
     <div
-      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${
-        selected ? "border-b-slate-800" : "border-transparent text-slate-500"
+      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 dark:text-white transition cursor-pointer ${
+        selected ? "border-b-slate-800 dark:border-b-white" : "border-transparent text-slate-500"
       }`}
     >
         <Icon size={20}/>

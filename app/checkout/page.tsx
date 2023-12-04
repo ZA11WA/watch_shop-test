@@ -8,9 +8,9 @@ const Checkout = () => {
 
         <div className="p-8">
             <Container>
-                <FormWrap>
+                
                     <CheckoutClient/>
-                </FormWrap>
+                
             </Container>
         </div>
      );

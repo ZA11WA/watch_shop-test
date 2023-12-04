@@ -11,7 +11,7 @@ interface CustomCheckBoxProps{
 const  CustomCheckBox:React.FC<CustomCheckBoxProps> = ({id, label, disabled, register}) => {
     return ( 
         <div className="w-full flex flex-row gap-2 items-center">
-            <input type="checkbox" autoComplete="off"
+            <input type="checkbox" autoComplete="off" 
         id={id}
         disabled={disabled}
         {...register(id)}

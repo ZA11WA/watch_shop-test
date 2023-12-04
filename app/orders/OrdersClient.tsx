@@ -43,7 +43,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   }
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 220 },
+    
     { field: "customer", headerName: "Customer Name", width: 130 },
     {
       field: "amount",
@@ -51,7 +51,9 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       width: 130,
       renderCell: (params) => {
         return (
-          <div className="font-bold text-slate-800">{params.row.amount}</div>
+          <div className="font-bold text-slate-800 dark:text-white">
+            {params.row.amount}
+          </div>
         );
       },
     },
@@ -131,24 +133,22 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       renderCell: (params) => {
         return (
           <div className="flex justify-between gap-4 w-full">
-            
             <ActionBtn
               icon={MdRemoveRedEye}
               onClick={() => {
                 router.push(`/order/${params.row.id}`);
               }}
             />
+            
           </div>
         );
       },
     },
   ];
 
-  
-
   return (
-    <div className="max-w-[1150px] m-auto text-xl bg-stone-50 rounded-xl shadow-lg">
-      <div className="mb-4 mt-8">
+    <div className="max-w-[1150px] m-auto text-xl bg-stone-50 dark:bg-neutral-900 rounded-xl shadow-lg">
+      <div className="mb-4 mt-8 dark:text-white">
         <Heading title="Orders" center />
       </div>
       <div style={{ height: 600, width: "100%" }}>

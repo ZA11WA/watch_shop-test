@@ -191,7 +191,7 @@ const AddProductForm = () => {
   }, []);
   
   return (
-    <>
+    <div className="dark:text-white">
     
     
       <Heading title="Dodaj produkt" center/>
@@ -231,6 +231,7 @@ const AddProductForm = () => {
         required
       /> 
       <CustomCheckBox
+      
         id="inStock"
         register={register}
         label="Ten produkt jest dostepny"
@@ -264,27 +265,24 @@ const AddProductForm = () => {
         
       </div>
       <div>
-        <div className="grid grid-cols-3 gap-3">
-          {colors.map((item, index) => {
-            return (
-              <SelectedColor
-                key={index}
-                item={item}
-                addImageToState={addImageToState}
-                removeImageFromState={removeImageToState}
-                isProductCreated={isProductCreated}
-                />
-                );
-                
-          })}
-        </div>
-      </div>
+  <div className="">
+    {colors.map((item, index) => (
+      <SelectedColor
+        key={index}
+        item={item}
+        addImageToState={addImageToState}
+        removeImageFromState={removeImageToState}
+        isProductCreated={isProductCreated}
+      />
+    ))}
+  </div>
+</div>
       <Button
         label={isLoading ? "Loading..." : "Add Product"}
         onClick={handleSubmit(onSubmit)}
       />
       
-    </>
+    </div>
   );
 };
 

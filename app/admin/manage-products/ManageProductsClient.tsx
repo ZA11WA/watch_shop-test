@@ -159,7 +159,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   }, []);
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl">
+    <div className="max-w-[1150px] m-auto text-xl dark:bg-neutral-900 rounded-lg shadow-sm dark:text-white">
       <div className="mb-4 mt-8">
         <Heading title="Manage Products" center />
       </div>

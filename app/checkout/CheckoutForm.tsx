@@ -67,16 +67,17 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit} id="payment-form">
+      <div className="dark:text-white">
       <div className="mb-6">
         <Heading title="Enter your detaild to complete checkout!" />
       </div>
       <h2 className="font-semibold mt-4 mb-2">Address Information</h2>
       <AddressElement
-        options={{ mode: "shipping", allowedCountries: ["US", "KE"] }}
+        options={{ mode: "shipping", allowedCountries: ["US", "PL"] }}
       />
       <h2 className="font-semibold mt-4 mb-2">Payment Information</h2>
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
-      <div className="py-4 text-center text-slate-700 text-2xl font-bold">
+      <div className="py-4 text-center text-black dark:text-white text-2xl font-bold">
         Total: {formattedPrice}
       </div>
       <Button
@@ -84,6 +85,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         disabled={isLoading || !stripe || !elements}
         onClick={() => {}}
       />
+      </div>
     </form>
   );
 };
