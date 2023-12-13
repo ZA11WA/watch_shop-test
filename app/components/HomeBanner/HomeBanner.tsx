@@ -4,8 +4,8 @@ import Image from 'next/image';
 import 'tailwindcss/tailwind.css';
 
 import image1 from '../images/banner1.png';
-import image2 from '../images/banner1.png';
-import image3 from '../images/banner1.png';
+import image2 from '../images/standard.gif';
+import image3 from '../images/standard-15.gif';
 
 
 const HomeBanner: React.FC = () => {
