@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       if (callback?.ok) {
         router.push("/cart");
         router.refresh();
-        toast.success("Logged In");
+        toast.success("Zalogowano");
       }
       if (callback?.error) {
         toast.error(callback.error);
@@ -55,7 +55,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
   };
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return <p className="text-center">Zalogowano pomyślnie</p>;
   }
 
   return (
@@ -70,11 +70,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
         register={register}
         errors={errors}
         required
-        
       />
       <Input
         id="password"
-        label="Password"
+        label="Hasło"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -89,7 +88,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
         outline
         label="Kontynuuj z Google"
         icon={AiOutlineGoogle}
-        onClick={() => {signIn('google')}}
+        onClick={() => {
+          signIn("google");
+        }}
       />
 
       <p className="text-sm">

@@ -1,7 +1,7 @@
 export const colors = [
   
     {
-        color: '',
+        color: 'Default',
         colorCode: '#000000',
         image: null
     },

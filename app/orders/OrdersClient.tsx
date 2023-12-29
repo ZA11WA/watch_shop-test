@@ -5,12 +5,8 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { formatPrice } from "@/utils/formatPrice";
 import Heading from "@/app/components/Heading/Heading";
 import Status from "@/app/components/Status";
-import {
-  MdAccessTimeFilled,
-  MdDeliveryDining,
-  MdDone,
-  MdRemoveRedEye,
-} from "react-icons/md";
+import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from "react-icons/md";
+import { BsEyeglasses } from "react-icons/bs";
 import ActionBtn from "@/app/components/ActionBtn";
 import { useCallback } from "react";
 import axios from "axios";
@@ -32,6 +28,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   if (orders) {
     rows = orders.map((order) => {
       return {
+        
         id: order.id,
         customer: order.user.name,
         amount: formatPrice(order.amount / 100),
@@ -43,11 +40,19 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   }
 
   const columns: GridColDef[] = [
-    
-    { field: "customer", headerName: "Customer Name", width: 130 },
+    { field: "customer", 
+    headerName: "Użytkownik", 
+    width: 130,
+  renderCell: (params) => {
+    return(
+      <div className="dark:text-white">
+        {params.row.customer}
+      </div>
+    )
+  } },
     {
       field: "amount",
-      headerName: "Amount(USD)",
+      headerName: "Kwota",
       width: 130,
       renderCell: (params) => {
         return (
@@ -60,21 +65,21 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
 
     {
       field: "paymentStatus",
-      headerName: "Payment Status",
+      headerName: "Status płatności",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.paymentStatus === "pending" ? (
               <Status
-                text="pending"
+                text="oczekuje"
                 icon={MdAccessTimeFilled}
                 bg="bg-slate-200"
                 color="text-slate-700"
               />
             ) : params.row.paymentStatus === "complete" ? (
               <Status
-                text="Completed"
+                text="zakończony"
                 icon={MdDone}
                 bg="bg-green-200"
                 color="text-green-700"
@@ -88,28 +93,28 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
     },
     {
       field: "deliveryStatus",
-      headerName: "Delivery Status",
+      headerName: "Status przesyłki",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.deliveryStatus === "pending" ? (
               <Status
-                text="pending"
+                text="oczekuje"
                 icon={MdAccessTimeFilled}
                 bg="bg-slate-200"
                 color="text-slate-700"
               />
             ) : params.row.deliveryStatus === "dispatched" ? (
               <Status
-                text="Dispatched"
+                text="w drodze"
                 icon={MdDeliveryDining}
                 bg="bg-purple-200"
                 color="text-purple-700"
               />
             ) : params.row.deliveryStatus === "delivered" ? (
               <Status
-                text="Delivered"
+                text="dostarczono"
                 icon={MdDone}
                 bg="bg-green-200"
                 color="text-green-700"
@@ -123,23 +128,29 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
     },
     {
       field: "date",
-      headerName: "Date",
+      headerName: "Data",
       width: 130,
+      renderCell: (params) => {
+        return(
+          <div className="dark:text-white">
+            {params.row.date}
+          </div>
+        )
+      }
     },
     {
       field: "action",
-      headerName: "Actions",
+      headerName: "Podgląd zamówienia",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="flex justify-between gap-4 w-full">
             <ActionBtn
-              icon={MdRemoveRedEye}
+              icon={BsEyeglasses}
               onClick={() => {
                 router.push(`/order/${params.row.id}`);
               }}
             />
-            
           </div>
         );
       },
@@ -147,11 +158,11 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   ];
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl bg-stone-50 dark:bg-neutral-900 rounded-xl shadow-lg">
-      <div className="mb-4 mt-8 dark:text-white">
-        <Heading title="Orders" center />
+    <div className="max-w-[1150px] mx-auto my-8 p-6 bg-white dark:bg-neutral-900 rounded-xl shadow-lg">
+      <div className="mb-4 text-center text-gray-900 dark:text-white">
+        <Heading title="Zamówienia" center />
       </div>
-      <div style={{ height: 600, width: "100%" }}>
+      <div style={{ height: 600, width: '100%' }} className="overflow-auto">
         <DataGrid
           rows={rows}
           columns={columns}
@@ -163,6 +174,10 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
           pageSizeOptions={[5, 10]}
           checkboxSelection
           disableRowSelectionOnClick
+          className="bg-white dark:bg-neutral-600"
+          getRowClassName={(params) => 
+            `my-2 rounded-lg ${params.indexRelativeToCurrentPage % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-900' : 'bg-white dark:bg-neutral-800'}`
+          }
         />
       </div>
     </div>

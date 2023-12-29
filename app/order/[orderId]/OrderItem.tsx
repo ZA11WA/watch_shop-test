@@ -1,7 +1,6 @@
 "use client";
 
 import { formatPrice } from "@/utils/formatPrice";
-import { truncateText } from "@/utils/truncateText";
 import { CartProductType } from "@prisma/client";
 import Image from "next/image";
 
@@ -22,7 +21,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
           />
         </div>
         <div className="flex flex-col gap-1">
-          <div>{truncateText(item.name)}</div>
+          <div>{item.name}</div>
           <div>{item.selectedImg.color}</div>
         </div>
       </div>

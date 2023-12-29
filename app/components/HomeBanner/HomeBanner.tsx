@@ -4,13 +4,13 @@ import Image from 'next/image';
 import 'tailwindcss/tailwind.css';
 
 import image1 from '../images/banner1.png';
-import image2 from '../images/standard.gif';
+
 import image3 from '../images/standard-15.gif';
 
 
 const HomeBanner: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const images = [image1, image2, image3];
+  const images = [image1, image3];
   const intervalDuration = 10000;
 
   const goToNextImage = () => {

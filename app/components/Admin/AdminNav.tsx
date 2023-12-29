@@ -4,6 +4,11 @@ import Container from "../Container";
 import AdminNavItem from "./AdminNavItem";
 import { MdDashboard, MdDns, MdFormatListBulleted, MdLibraryAdd } from "react-icons/md";
 import { usePathname } from "next/navigation";
+import { IoStatsChart } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
+import { RxDragHandleHorizontal } from "react-icons/rx";
+import { RxDragHandleVertical } from "react-icons/rx";
+
 
 const AdminNav = () => {
   const pathname = usePathname();
@@ -14,29 +19,29 @@ const AdminNav = () => {
         <div className="flex flex-row items-center justify-between md:justify-center gap-8 md:gap-12 overflow-x-auto flex-nowrap">
           <Link href="/admin">
             <AdminNavItem
-              label="Summary"
-              icon={MdDashboard}
+              label="Statystyki"
+              icon={IoStatsChart}
               selected={pathname == "/admin"}
             />
           </Link>
           <Link href="/admin/add-products">
             <AdminNavItem
-              label="AddProducts"
-              icon={MdLibraryAdd}
+              label="Dodaj produkt"
+              icon={IoMdAdd}
               selected={pathname == "/admin/add-products"}
             />
           </Link>
           <Link href="/admin/manage-products">
             <AdminNavItem
-              label="ManageProducts"
-              icon={MdDns}
+              label="Zarządzaj produktem"
+              icon={RxDragHandleHorizontal}
               selected={pathname == "/admin/manage-products"}
             />
           </Link>
           <Link href="/admin/manage-orders">
             <AdminNavItem
-              label="ManageOrders"
-              icon={MdFormatListBulleted}
+              label="Zarządzaj zamówieniem"
+              icon={RxDragHandleVertical}
               selected={pathname == "/admin/manage-orders"}
             />
           </Link>
