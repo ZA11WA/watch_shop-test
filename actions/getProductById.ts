@@ -12,11 +12,13 @@ export default async function getProductById(params: IParams) {
         id: productId,
       },
       include: {
-        include: {
-          user: true,
-        },
-        orderBy: {
-          createdDate: "desc",
+        reviews: {
+          include: {
+            user: true,
+          },
+          orderBy: {
+            createdDate: "desc",
+          },
         },
       },
     });

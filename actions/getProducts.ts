@@ -35,11 +35,13 @@ export default async function getProducts(params: IProductParams) {
         ],
       },
       include: {
-        include: {
-          user: true,
-        },
-        orderBy: {
-          createdDate: "desc",
+        reviews: {
+          include: {
+            user: true,
+          },
+          orderBy: {
+            createdDate: "desc",
+          },
         },
       },
     });
