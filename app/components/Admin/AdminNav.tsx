@@ -8,11 +8,14 @@ import { IoStatsChart } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { RxDragHandleHorizontal } from "react-icons/rx";
 import { RxDragHandleVertical } from "react-icons/rx";
+import { getCurrentUser } from "@/actions/getCurrentUser";
+import NullData from "../NullData";
 
 
 const AdminNav = () => {
   const pathname = usePathname();
-
+  
+  
   return (
     <div className="w-full shadow-sm top-20 border border-b-[1px] pt-4 dark:bg-neutral-800 dark:border-neutral-700">
       <Container>
