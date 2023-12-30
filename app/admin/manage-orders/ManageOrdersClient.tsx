@@ -43,11 +43,22 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   }
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: 'ID', width: 220 },
-    { field: "customer", headerName: "Customer Name", width: 130 },
+    { field: "id",
+     headerName: 'ID',
+      width: 220,
+      renderCell: (params) => {
+        return <div className="dark:text-white">{params.row.id}</div>;
+      },
+     },
+    { field: "customer",
+     headerName: "Użytkownik",
+      width: 130,
+      renderCell: (params) => {
+        return <div className="dark:text-white">{params.row.customer}</div>;
+      }, },
     {
       field: "amount",
-      headerName: "Amount(USD)",
+      headerName: "Cena",
       width: 130,
       renderCell: (params) => {
         return (
@@ -60,21 +71,21 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 
     {
       field: "paymentStatus",
-      headerName: "Payment Status",
+      headerName: "Status płatności",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.paymentStatus === "pending" ? (
               <Status
-                text="pending"
+                text="oczekuje"
                 icon={MdAccessTimeFilled}
                 bg="bg-slate-200"
                 color="text-slate-700"
               />
             ) : params.row.paymentStatus === "complete" ? (
               <Status
-                text="Completed"
+                text="opłacone"
                 icon={MdDone}
                 bg="bg-green-200"
                 color="text-green-700"
@@ -88,28 +99,28 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
     },
     {
       field: "deliveryStatus",
-      headerName: "Delivery Status",
+      headerName: "Status dostawy",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.deliveryStatus === "pending" ? (
               <Status
-                text="pending"
+                text="oczekuje"
                 icon={MdAccessTimeFilled}
                 bg="bg-slate-200"
                 color="text-slate-700"
               />
             ) : params.row.deliveryStatus === "dispatched" ? (
               <Status
-                text="Dispatched"
+                text="w drodze"
                 icon={MdDeliveryDining}
                 bg="bg-purple-200"
                 color="text-purple-700"
               />
             ) : params.row.deliveryStatus === "delivered" ? (
               <Status
-                text="Delivered"
+                text="dostarczone"
                 icon={MdDone}
                 bg="bg-green-200"
                 color="text-green-700"
@@ -123,12 +134,15 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
     },
     {
       field: "date",
-      headerName: "Date",
+      headerName: "Data",
       width: 130,
+      renderCell: (params) => {
+        return <div className="dark:text-white">{params.row.date}</div>;
+      },
     },
     {
       field: "action",
-      headerName: "Actions",
+      headerName: "Akcje",
       width: 200,
       renderCell: (params) => {
         return (
@@ -164,11 +178,11 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
         deliveryStatus: "dispatched",
       })
       .then((res) => {
-        toast.success("Order Dispatched");
+        toast.success("Zamówienie w drodze.");
         router.refresh();
       })
       .catch((err) => {
-        toast.error("Oops! Somenthing went wrong");
+        toast.error("Ups! Coś poszło nie tak");
         console.log(err);
       });
   }, []);
@@ -179,19 +193,19 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
         deliveryStatus: "delivered",
       })
       .then((res) => {
-        toast.success("Order Delivered");
+        toast.success("Zamówienie dostarczone.");
         router.refresh();
       })
       .catch((err) => {
-        toast.error("Oops! Somenthing went wrong");
+        toast.error("Ups! Coś poszło nie tak.");
         console.log(err);
       });
   }, []);
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl dark:text-white dark:bg-neutral-900 rounded-lg shadow-sm">
-      <div className="mb-4 mt-8">
-        <Heading title="Manage Orders" center />
+    <div className="max-w-[1150px] mx-auto my-8 p-3 bg-white dark:bg-neutral-900 rounded-xl shadow-lg">
+      <div className="mb-4 text-center text-gray-900 dark:text-white">
+        <Heading title="Zamówienia" center />
       </div>
       <div style={{ height: 600, width: "100%" }}>
         <DataGrid
@@ -205,6 +219,14 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
           pageSizeOptions={[5, 10]}
           checkboxSelection
           disableRowSelectionOnClick
+          className="bg-white dark:bg-neutral-600"
+          getRowClassName={(params) =>
+            `my-2 rounded-lg ${
+              params.indexRelativeToCurrentPage % 2 === 0
+                ? "bg-neutral-50 dark:bg-neutral-900"
+                : "bg-white dark:bg-neutral-800"
+            }`
+          }
         />
       </div>
     </div>

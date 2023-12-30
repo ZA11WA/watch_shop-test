@@ -20,12 +20,14 @@ export default async function Home({ searchParams }: HomeProps) {
 
 
   if (products.length === 0) {
-    return <NullData title="Opps! No products found." />;
+    return <NullData title="Ups! Nie znaleziono produktów" />;
   }
   function shuffleArray(array: any) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+      if (i % 2 === 0) {
+        [array[i], array[j]] = [array[j], array[i]];
+      }
     }
     return array;
   }

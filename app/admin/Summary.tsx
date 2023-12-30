@@ -80,7 +80,7 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
       <div className="mb-4 mt-2 dark:text-white">
         <Heading title="Statystyki sklepu" center />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-3 max-h-50vh overflow-y-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-1 max-h-50vh overflow-y-auto">
         {summaryKeys &&
           summaryKeys.map((key) => {
             return (
