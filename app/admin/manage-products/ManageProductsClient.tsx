@@ -43,23 +43,53 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   }
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 220 },
-    { field: "name", headerName: "Name", width: 220 },
+    {
+      field: "id",
+      headerName: "ID",
+      width: 220,
+      renderCell: (params) => {
+        return <div className="dark:text-white">{params.row.id}</div>;
+      },
+    },
+    {
+      field: "name",
+      headerName: "Nazwa",
+      width: 220,
+      renderCell: (params) => {
+        return <div className="dark:text-white">{params.row.name}</div>;
+      },
+    },
     {
       field: "price",
-      headerName: "Price(USD)",
+      headerName: "Cena",
       width: 100,
       renderCell: (params) => {
         return (
-          <div className="font-bold text-slate-800">{params.row.price}</div>
+          <div className="font-bold text-slate-800 dark:text-white">
+            {params.row.price}
+          </div>
         );
       },
     },
-    { field: "category", headerName: "Category", width: 100 },
-    { field: "brand", headerName: "Brand", width: 100 },
+    {
+      field: "category",
+      headerName: "Kategoria",
+      width: 100,
+      renderCell: (params) => {
+        return <div className="dark:text-white">{params.row.category}</div>;
+      },
+    },
+    {
+      field: "brand",
+      headerName: "Firma",
+      width: 100,
+      renderCell: (params) => {
+        return <div className="dark:text-white">{params.row.brand}</div>;
+      },
+    },
     {
       field: "inStock",
-      headerName: "inStock",
+      headerName: "Dostępność",
       width: 120,
       renderCell: (params) => {
         return (
@@ -85,7 +115,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     },
     {
       field: "action",
-      headerName: "Actions",
+      headerName: "Akcje",
       width: 200,
       renderCell: (params) => {
         return (
@@ -102,9 +132,12 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
                 handleDelete(params.row.id, params.row.iamges);
               }}
             />
-            <ActionBtn icon={MdRemoveRedEye} onClick={() => {
-                router.push(`product/${params.row.id}`)
-            }} />
+            <ActionBtn
+              icon={MdRemoveRedEye}
+              onClick={() => {
+                router.push(`product/${params.row.id}`);
+              }}
+            />
           </div>
         );
       },
@@ -118,17 +151,17 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
         inStock: !inStock,
       })
       .then((res) => {
-        toast.success("Product status changed");
+        toast.success("Zmiana statusu produktu.");
         router.refresh();
       })
       .catch((err) => {
-        toast.error("Oops! Somenthing went wrong");
+        toast.error("Ups! Coś poszło nie tak.");
         console.log(err);
       });
   }, []);
 
   const handleDelete = useCallback(async (id: string, images: any[]) => {
-    toast("Deleting product, please wait");
+    toast("Usuwanie produktu, poczekaj...");
 
     const handleImageDelete = async () => {
       try {
@@ -149,19 +182,19 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     axios
       .delete(`/api/product/${id}`)
       .then((res) => {
-        toast.success("Product deleted");
+        toast.success("Produkt usunięty");
         router.refresh();
       })
       .catch((err) => {
-        toast.error("Failed to delete product");
+        toast.error("Błąd podczas usuwania produktu.");
         console.log(err);
       });
   }, []);
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl dark:bg-neutral-900 rounded-lg shadow-sm dark:text-white">
-      <div className="mb-4 mt-8">
-        <Heading title="Manage Products" center />
+    <div className="max-w-[1150px] mx-auto my-8 p-3 bg-white dark:bg-neutral-900 rounded-xl shadow-lg">
+      <div className="mb-4 text-center text-gray-900 dark:text-white">
+        <Heading title="Produkty" center />
       </div>
       <div style={{ height: 600, width: "100%" }}>
         <DataGrid
@@ -175,6 +208,14 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
           pageSizeOptions={[5, 10]}
           checkboxSelection
           disableRowSelectionOnClick
+          className="bg-white dark:bg-neutral-600"
+          getRowClassName={(params) =>
+            `my-2 rounded-lg ${
+              params.indexRelativeToCurrentPage % 2 === 0
+                ? "bg-neutral-50 dark:bg-neutral-900"
+                : "bg-white dark:bg-neutral-800"
+            }`
+          }
         />
       </div>
     </div>

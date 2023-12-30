@@ -46,7 +46,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
     axios
       .post("/api/register", data)
       .then(() => {
-        toast.success("Account created!");
+        toast.success("Konto utworzone!");
 
         signIn("credentials", {
           email: data.email,
@@ -56,14 +56,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
           if (callback?.ok) {
             router.push("/cart");
             router.refresh();
-            toast.success("Logged In");
+            toast.success("Zalogowano");
           }
           if (callback?.error) {
             toast.error(callback.error);
           }
         });
       })
-      .catch(() => toast.error("Something went wrong"))
+      .catch(() => toast.error("Coś poszło nie tak"))
       .finally(() => {
         setIsLoading(false);
       });
@@ -71,7 +71,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
 
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return <p className="text-center">Zalogowano pomyślnie.</p>;
   }
 
   return (
@@ -80,7 +80,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
       <hr className="bg-gray-300 w-full h-px" />
       <Input
         id="name"
-        label="Name"
+        label="Imię"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -96,7 +96,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
       />
       <Input
         id="password"
-        label="Password"
+        label="Hasło"
         disabled={isLoading}
         register={register}
         errors={errors}

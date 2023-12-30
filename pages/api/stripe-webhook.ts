@@ -20,7 +20,7 @@ export default async function handler(
   const sig = req.headers["stripe-signature"];
 
   if (!sig) {
-    return res.status(400).send("Missing the stripe signature");
+    return res.status(400).send("Brak sygnatury stripe");
   }
 
   let event: Stripe.Event;

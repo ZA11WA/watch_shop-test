@@ -13,9 +13,7 @@ interface ProductImageProps {
 }
 
 const ProductImage: React.FC<ProductImageProps> = ({
-  cartProduct,
-  product,
-  handleColorSelect,
+  cartProduct
 }) => {
   return (
     <div className="grid  gap-2 h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">

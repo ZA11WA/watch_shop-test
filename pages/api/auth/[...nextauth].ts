@@ -26,7 +26,7 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
-          throw new Error("Invalid email or password");
+          throw new Error("Niewłaściwy adres email lub hasło");
         }
 
         const user = await prisma.user.findUnique({
@@ -35,7 +35,7 @@ export const authOptions: AuthOptions = {
           },
         });
         if (!user || !user?.hashedPassword) {
-          throw new Error("Invalid email or password");
+          throw new Error("Niewłaściwy adres email lub hasło");
         }
 
         const isCorrectPassword = await bcrypt.compare(
@@ -43,7 +43,7 @@ export const authOptions: AuthOptions = {
           user.hashedPassword
         );
         if (!isCorrectPassword) {
-          throw new Error("Invalid email or password");
+          throw new Error("Niewłaściwy adres email lub hasło");
         }
 
         return user;
@@ -61,4 +61,3 @@ export const authOptions: AuthOptions = {
 };
 
 export default NextAuth(authOptions);
-  

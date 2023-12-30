@@ -21,11 +21,14 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
   if (!cartProducts || cartProducts.length === 0) {
     return (
       <div className="flex flex-col items-center h-screen justify-center">
-        <div className="text-2xl">Your cart is empty!</div>
+        <div className="text-2xl">Twój koszyk jest pusty!</div>
         <div>
-          <Link href={"/"} className="text-slate-500 flex items-center gap-1 mt-2">
+          <Link
+            href={"/"}
+            className="text-slate-500 flex items-center gap-1 mt-2"
+          >
             <MdArrowBack />
-            <span>Start Shopping</span>
+            <span>Zacznij zakupy!</span>
           </Link>
         </div>
       </div>
@@ -39,14 +42,9 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
         <div className="flex flex-col md:flex-row gap-4">
           <div className="md:w-3/4">
             <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-md p-6 mb-4">
-              
-                
-                
-                  {cartProducts.map((item) => (
-                    <ItemContent key={item.id} item={item} />
-                  ))}
-                
-              
+              {cartProducts.map((item) => (
+                <ItemContent key={item.id} item={item} />
+              ))}
             </div>
           </div>
           <div className="md:w-1/4">
@@ -56,20 +54,27 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
                 <span>Subtotal</span>
                 <span>{formatPrice(cartTotalAmount)}</span>
               </div>
-              
+
               <hr className="my-2" />
               <div className="flex justify-between mb-2">
-                <span className="font-semibold ">Order total</span>
-                <span className="font-semibold">{formatPrice(cartTotalAmount)}</span>
+                <span className="font-semibold ">Kwota całkowita:</span>
+                <span className="font-semibold">
+                  {formatPrice(cartTotalAmount)}
+                </span>
               </div>
               <Button
-                label={currentUser ? 'Zapłać' : 'Zaloguj się'}
+                label={currentUser ? "Zapłać" : "Zaloguj się"}
                 outline={!currentUser}
                 onClick={() => {
-                  currentUser ? router.push('/checkout') : router.push('/login');
+                  currentUser
+                    ? router.push("/checkout")
+                    : router.push("/login");
                 }}
               />
-              <Link href={'/'} className="text-green-500 flex items-center gap-1 mt-4">
+              <Link
+                href={"/"}
+                className="text-green-500 flex items-center gap-1 mt-4"
+              >
                 <MdArrowBack />
                 <span>Kontynuuj zakupy</span>
               </Link>

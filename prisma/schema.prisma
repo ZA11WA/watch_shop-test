@@ -1,86 +1,98 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
 }
 
-type OrderProducts {
-  brand       String
-  category    String
-  description String
-  id          String
-  name        String
-  price       Float
-  quantity    BigInt
-  selectedImg OrderProductsSelectedImg
-}
-
-type OrderProductsSelectedImg {
-  color     String
-  colorCode String
-  image     String
-}
-
-type ProductImages {
-  color     String
-  colorCode String
-  image     String
+generator client {
+    provider = "prisma-client-js"
 }
 
 model Account {
-  id                String @id @default(auto()) @map("_id") @db.ObjectId
-  access_token      String
-  expires_at        BigInt
-  id_token          String
-  provider          String
-  providerAccountId String
-  scope             String
-  token_type        String
-  type              String
-  userId            String @db.ObjectId
+    id                String  @id @default(auto()) @map("_id") @db.ObjectId
+    userId            String  @db.ObjectId
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String? @db.String
+    access_token      String? @db.String
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? @db.String
+    session_state     String?
 
-  @@unique([provider, providerAccountId])
-}
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-model Order {
-  id              String          @id @default(auto()) @map("_id") @db.ObjectId
-  amount          Float
-  createData      DateTime        @db.Date
-  currency        String
-  deliveryStatus  String
-  paymentIntentId String          @unique
-  products        OrderProducts[]
-  status          String
-  userId          String          @db.ObjectId
-}
-
-model Product {
-  id          String          @id @default(auto()) @map("_id") @db.ObjectId
-  brand       String
-  category    String
-  description String
-  images      ProductImages[]
-  inStock     Boolean
-  name        String
-  price       Float
-}
-
-model Review {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+    @@unique([provider, providerAccountId])
 }
 
 model User {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  createAt       DateTime @db.Date
-  email          String   @unique
-  /// Could not determine type: the field only had null or empty values in the sample set.
-  emailVerified  Json?
-  hashedPassword String?
-  image          String?
-  name           String
-  role           String
-  updateAt       DateTime @db.Date
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    name           String?
+    email          String?   @unique
+    emailVerified  DateTime?
+    image          String?
+    hashedPassword String?
+    createAt       DateTime  @default(now())
+    updateAt       DateTime  @updatedAt
+    role           Role      @default(USER)
+    accounts       Account[]
+    orders         Order[]
+}
+
+model Product {
+    id          String  @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    price       Float
+    brand       String
+    category    String
+    inStock     Boolean
+    images      Image[]
+}
+
+model Order {
+    id              String            @id @default(auto()) @map("_id") @db.ObjectId
+    userId          String            @db.ObjectId
+    amount          Float
+    currency        String
+    status          String
+    deliveryStatus  String?
+    createData      DateTime          @default(now())
+    paymentIntentId String            @unique
+    products        CartProductType[]
+    address         Address?
+    user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+type CartProductType {
+    id          String
+    name        String
+    description String
+    category    String
+    brand       String
+    selectedImg Image
+    quantity    Int
+    price       Float
+}
+
+type Image {
+    color     String
+    colorCode String
+    image     String
+}
+
+type Address {
+    city        String
+    country     String
+    line1       String
+    line2       String
+    postal_code String
+    state       String
+}
+
+enum Role {
+    USER
+    ADMIN
 }

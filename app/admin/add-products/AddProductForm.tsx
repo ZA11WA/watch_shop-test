@@ -198,7 +198,7 @@ const AddProductForm = () => {
       <div className="space-y-2">
       <Input
         id="name"
-        label="Name"
+        label="Nazwa"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -207,7 +207,7 @@ const AddProductForm = () => {
       />
       <Input
         id="price"
-        label="Price"
+        label="Cena"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -216,7 +216,7 @@ const AddProductForm = () => {
       />
       <Input
         id="brand"
-        label="Brand"
+        label="Firma"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -224,7 +224,7 @@ const AddProductForm = () => {
       />
       <TextArea
         id="description"
-        label="Description"
+        label="Opis"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -278,7 +278,7 @@ const AddProductForm = () => {
   </div>
 </div>
       <Button
-        label={isLoading ? "Loading..." : "Add Product"}
+        label={isLoading ? "Ładowanie..." : "Dodaj produkt"}
         onClick={handleSubmit(onSubmit)}
       />
       
