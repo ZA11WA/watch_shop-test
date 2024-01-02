@@ -1,16 +1,22 @@
 'use client'
-import { categories } from "@/utils/Categories";
+import React, { useState, useEffect } from 'react';
+import { usePathname } from "next/navigation";
 import Container from "../Container";
 import Category from "./Category";
-import { usePathname, useSearchParams } from "next/navigation";
+import { categories } from "@/utils/Categories";
 
 const Categories = () => {
-  const params = useSearchParams();
-  const category = params?.get("category");
+  const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
   const pathname = usePathname();
   const isMainPage = pathname === "/";
 
-  if (!isMainPage) return null;
+  useEffect(() => {
+    // Wyświetl kategorie tylko na głównej stronie
+    setIsCategoriesVisible(isMainPage);
+  }, [pathname]); // Reaguje na zmianę ścieżki
+
+  if (!isCategoriesVisible) return null;
+
   return (
     <div className="bg-white dark:bg-neutral-800">
       <Container>
@@ -20,11 +26,7 @@ const Categories = () => {
               key={item.label}
               label={item.label}
               icon={item.icon}
-              
-              selected={
-                category === item.label ||
-                (category === null && item.label === "Wszystkie")
-              }
+              // Inne właściwości
             />
           ))}
         </div>
@@ -34,3 +36,4 @@ const Categories = () => {
 };
 
 export default Categories;
+
