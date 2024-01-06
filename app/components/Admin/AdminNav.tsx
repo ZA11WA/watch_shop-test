@@ -2,7 +2,12 @@
 import Link from "next/link";
 import Container from "../Container";
 import AdminNavItem from "./AdminNavItem";
-import { MdDashboard, MdDns, MdFormatListBulleted, MdLibraryAdd } from "react-icons/md";
+import {
+  MdDashboard,
+  MdDns,
+  MdFormatListBulleted,
+  MdLibraryAdd,
+} from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { IoStatsChart } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
@@ -10,46 +15,55 @@ import { RxDragHandleHorizontal } from "react-icons/rx";
 import { RxDragHandleVertical } from "react-icons/rx";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import NullData from "../NullData";
+import { useCallback, useState } from "react";
+import { FaList } from "react-icons/fa";
+import { AiFillCaretDown } from "react-icons/ai";
+import BackDrop from "../nav/BackDrop";
 
-
-const AdminNav = () => {
+const AdminNav: React.FC = () => {
   const pathname = usePathname();
-  
-  
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
+  const menuClasses = isOpen ? "translate-x-0" : "-translate-x-full";
+
   return (
-    <div className="w-full shadow-sm top-20 border border-b-[1px] pt-4 dark:bg-neutral-800 dark:border-neutral-700">
-      <Container>
-        <div className="flex flex-row items-center justify-between md:justify-center gap-8 md:gap-12 overflow-x-auto flex-nowrap">
-          <Link href="/admin">
-            <AdminNavItem
-              label="Statystyki"
-              icon={IoStatsChart}
-              selected={pathname == "/admin"}
-            />
-          </Link>
-          <Link href="/admin/add-products">
-            <AdminNavItem
-              label="Dodaj produkt"
-              icon={IoMdAdd}
-              selected={pathname == "/admin/add-products"}
-            />
-          </Link>
-          <Link href="/admin/manage-products">
-            <AdminNavItem
-              label="Zarządzaj produktem"
-              icon={RxDragHandleHorizontal}
-              selected={pathname == "/admin/manage-products"}
-            />
-          </Link>
-          <Link href="/admin/manage-orders">
-            <AdminNavItem
-              label="Zarządzaj zamówieniem"
-              icon={RxDragHandleVertical}
-              selected={pathname == "/admin/manage-orders"}
-            />
-          </Link>
-        </div>
-      </Container>
+    <div className="relative z-30">
+      <div
+        onClick={toggleOpen}
+        className="p-2   flex items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700 dark:text-white"
+      >
+        <FaList size={25} />
+        <AiFillCaretDown />
+      </div>
+      {isOpen && <BackDrop onClick={toggleOpen} />}
+      <div
+        className={`fixed top-0 left-0 h-full w-52 bg-white dark:bg-neutral-700 overflow-auto z-40 transition-transform duration-300 ${menuClasses}`}
+      >
+        <Link href="/admin">
+          <AdminNavItem label="Statystyki" selected={pathname == "/admin"} />
+        </Link>
+        <Link href="/admin/add-products">
+          <AdminNavItem
+            label="Dodaj produkt"
+            selected={pathname == "/admin/add-products"}
+          />
+        </Link>
+        <Link href="/admin/manage-products">
+          <AdminNavItem
+            label="Zarządzaj produktem"
+            selected={pathname == "/admin/manage-products"}
+          />
+        </Link>
+        <Link href="/admin/manage-orders">
+          <AdminNavItem
+            label="Zarządzaj zamówieniem"
+            selected={pathname == "/admin/manage-orders"}
+          />
+        </Link>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 'use client'
 import { ImageType } from "@/app/admin/add-products/AddProductForm";
+import { Console } from "console";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -11,15 +12,15 @@ interface CategoryProps {
   label: string;
   icon: IconType;
   selected?: boolean;
-  
 }
 
-const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected,  }) => {
+const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   const router = useRouter();
   const params = useSearchParams();
 
   const handleClick = useCallback(() => {
     if (label == "Wszystkie") {
+      
       router.push("/");
     } else {
       let currentQuery = {};

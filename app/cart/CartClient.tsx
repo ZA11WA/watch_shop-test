@@ -49,9 +49,9 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
           </div>
           <div className="md:w-1/4">
             <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-md p-6">
-              <h2 className="text-lg font-semibold mb-4">Summary</h2>
+              <h2 className="text-lg font-semibold mb-4">Do zapłaty</h2>
               <div className="flex justify-between mb-2">
-                <span>Subtotal</span>
+                <span>Kwota:</span>
                 <span>{formatPrice(cartTotalAmount)}</span>
               </div>
 

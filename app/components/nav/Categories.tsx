@@ -1,39 +1,64 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import { usePathname } from "next/navigation";
+import React, { useCallback, useState } from 'react';
+import { usePathname, useSearchParams } from "next/navigation";
 import Container from "../Container";
 import Category from "./Category";
 import { categories } from "@/utils/Categories";
+import BackDrop from './BackDrop';
+import { AiFillCaretDown } from 'react-icons/ai';
+import { FaList } from 'react-icons/fa';
 
 const Categories = () => {
-  const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleOpen = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
+
+  const handleCategorySelect = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const params = useSearchParams();
+  const category = params?.get("category");
   const pathname = usePathname();
   const isMainPage = pathname === "/";
 
-  useEffect(() => {
-    // Wyświetl kategorie tylko na głównej stronie
-    setIsCategoriesVisible(isMainPage);
-  }, [pathname]); // Reaguje na zmianę ścieżki
+  const menuClasses = isOpen ? "translate-x-0" : "-translate-x-full";
 
-  if (!isCategoriesVisible) return null;
+  if (!isMainPage) return null;
 
   return (
-    <div className="bg-white dark:bg-neutral-800">
-      <Container>
-        <div className="flex flex-row items-center justify-between md:justify-center gap-8 md:gap-12 overflow-x-auto flex-nowrap">
-          {categories.map((item) => (
-            <Category
-              key={item.label}
-              label={item.label}
-              icon={item.icon}
-              // Inne właściwości
-            />
-          ))}
+    <>
+      <div className="relative z-30">
+        <div
+          onClick={toggleOpen}
+          className="p-2 flex items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700 dark:text-white"
+        >
+          <FaList size={25}/>
+          <AiFillCaretDown/>
         </div>
-      </Container>
-    </div>
+      </div>
+      {isOpen && <BackDrop onClick={toggleOpen} />}
+      <div
+        className={`fixed top-0 left-0 h-full w-52 bg-white dark:bg-neutral-700 overflow-auto z-40 transition-transform duration-300 ${menuClasses}`}
+      >
+        <Container>
+          <div className="flex flex-col gap-1">
+            {categories.map((item) => (
+              <div key={item.label} onClick={handleCategorySelect}> {/* Add unique key here */}
+                <Category
+                  key={item.label}
+                  label={item.label}
+                  icon={item.icon}
+                  selected={category === item.label || (category === null && item.label === "Wszystkie")}
+                />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
+    </>
   );
 };
 
 export default Categories;
-

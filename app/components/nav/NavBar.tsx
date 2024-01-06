@@ -6,7 +6,14 @@ import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import SearchBar from "./SearchBar";
 import ThemeSwitcher from "../Button/ThemeSwitcher";
-import CategoriesMenu from "./CategoriesMenu";
+
+import AdminNav from "../Admin/AdminNav";
+import { SafeUser } from "@/types";
+import Categories from "./Categories";
+
+interface UserMenuProps {
+  currentUser: SafeUser | null;
+}
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400"] });
 const NavBar = async () => {
@@ -18,7 +25,11 @@ const NavBar = async () => {
         <Container>
           <div className="flex flex-wrap items-center justify-between">
             <div className="flex items-center gap-6 md:gap-12 order-1">
-              <CategoriesMenu />
+               
+               
+              <Categories/>
+  
+             
               <Link
                 className={`${montserrat.className} font-bold text-2xl text-neutral-950 dark:text-white uppercase`}
                 href={"/"}

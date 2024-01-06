@@ -113,16 +113,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           <span className="font-semibold">KATEGORIA:</span> {product.category}
         </div>
         <div className="text-lg">
-          <span className="font-semibold">BRAND:</span> {product.brand}
+          <span className="font-semibold">FIRMA:</span> {product.brand}
         </div>
-        <div className={product.inStock ? "text-teal-400" : "text-rose-400"}>
+        <div className={product.inStock ? "text-green-400" : "text-red-400"}>
           {product.inStock ? "Dostępny" : "Niedostępny"}
         </div>
         <Horizontal />
         {isProductInCart ? (
           <div className="">
             <p className="mb-2 text-slate-500 dark:text-white flex items-center gap-1">
-              <MdCheckCircle className="text-teal-400" size={20} />
+              <MdCheckCircle className="text-green-400" size={20} />
               <span>Produkt dodany do karty</span>
             </p>
             <div className="max-w-[300px] ">

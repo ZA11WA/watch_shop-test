@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-// ... (imports)
 
 const SearchBar = () => {
   const router = useRouter();
@@ -60,7 +59,7 @@ const SearchBar = () => {
           autoComplete="off"
           type="text"
           id="search"
-          placeholder="Search something.."
+          placeholder="Szukaj..."
           className="peer h-full w-64 outline-none text-sm text-gray-700 dark:text-white pr-2 dark:bg-neutral-700" // Adjust the width here
           onKeyPress={handleKeyPress}
         />

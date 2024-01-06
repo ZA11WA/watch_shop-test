@@ -1,27 +1,31 @@
+// AdminNavItem.js
+import React from "react";
 import { IconType } from "react-icons";
 
 interface AdminNavItemProps {
   selected?: boolean;
-  icon: IconType;
   label: string;
+  onClick?: () => void;
 }
 
 const AdminNavItem: React.FC<AdminNavItemProps> = ({
   selected,
-  icon: Icon,
   label,
+  onClick,
 }) => {
   return (
-    <div
-      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 dark:text-white transition cursor-pointer ${
-        selected ? "border-b-slate-800 dark:border-b-white" : "border-transparent text-slate-500"
-      }`}
+    <div onClick={onClick}
+      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-gray-700 dark:text-white transition cursor-pointer
+        ${
+          selected
+            ? "border-b-stone-800 text-black"
+            : "border-transparent text-neutral-600"
+        }
+        `}
     >
-        <Icon size={20}/>
-        <div className="font-medium text-sm text-center break-normal">
-            {label}
-        </div>
+      <span className="font-medium text-sm">{label}</span>
     </div>
+    
   );
 };
 
