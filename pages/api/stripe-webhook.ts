@@ -19,6 +19,7 @@ export default async function handler(
   const buf = await buffer(req);
   const sig = req.headers["stripe-signature"];
 
+
   if (!sig) {
     return res.status(400).send("Missing the stripe signature");
   }
