@@ -44,7 +44,7 @@ const NavBar = async () => {
               <UserMenu currentUser={currentUser} />
             </div>
 
-            <div className="flex-grow order-3 md:order-2 pt-2">
+            <div className="md:order-2 pt-2">
               <SearchBar />
             </div>
           </div>

@@ -30,10 +30,10 @@ const AdminNav: React.FC = () => {
   const menuClasses = isOpen ? "translate-x-0" : "-translate-x-full";
 
   return (
-    <div className="relative z-30">
+    <div className="flex">
       <div
         onClick={toggleOpen}
-        className="p-2   flex items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700 dark:text-white"
+        className="p-3 flex items-center gap-1 rounded-full hover:shadow-md transition cursor-pointer  text-slate-700 dark:text-white"
       >
         <FaList size={25} />
         <AiFillCaretDown />

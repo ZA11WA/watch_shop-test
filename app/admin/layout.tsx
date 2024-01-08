@@ -1,8 +1,8 @@
 import AdminNav from "../components/Admin/AdminNav";
 
 export const metadata ={
-    title: 'E-Shop Admin',
-    description: 'Eshop Admin Dashboard'
+    title: 'Tempo Zegara Admin',
+    description: 'Panel Admina'
 }
 
 const AdminLayout = ({children} : {children: React.ReactNode}) => {
