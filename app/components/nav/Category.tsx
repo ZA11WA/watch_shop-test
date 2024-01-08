@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { ImageType } from "@/app/admin/add-products/AddProductForm";
 import { Console } from "console";
 import Image from "next/image";
@@ -20,7 +20,6 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
 
   const handleClick = useCallback(() => {
     if (label == "Wszystkie") {
-      
       router.push("/");
     } else {
       let currentQuery = {};
@@ -42,7 +41,7 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
           skipNull: true,
         }
       );
-      router.push(url)
+      router.push(url);
     }
   }, [label, params, router]);
   return (
@@ -56,9 +55,6 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
         }
         `}
     >
-      
-      
-
       <div className="font-medium text-sm">{label}</div>
     </div>
   );

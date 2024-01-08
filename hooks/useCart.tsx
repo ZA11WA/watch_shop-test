@@ -180,7 +180,7 @@ export const CartContextProvider = (props: Props) => {
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === null) {
-    throw new Error("useCart must be used within CartContextProvider");
+    throw new Error("useCart musi być użyty z CartContextProvider");
   }
 
   return context;

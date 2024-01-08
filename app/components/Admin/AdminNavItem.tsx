@@ -14,7 +14,8 @@ const AdminNavItem: React.FC<AdminNavItemProps> = ({
   onClick,
 }) => {
   return (
-    <div onClick={onClick}
+    <div
+      onClick={onClick}
       className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-gray-700 dark:text-white transition cursor-pointer
         ${
           selected
@@ -25,7 +26,6 @@ const AdminNavItem: React.FC<AdminNavItemProps> = ({
     >
       <span className="font-medium text-sm">{label}</span>
     </div>
-    
   );
 };
 

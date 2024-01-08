@@ -1,20 +1,7 @@
 "use client";
 import Link from "next/link";
-import Container from "../Container";
 import AdminNavItem from "./AdminNavItem";
-import {
-  MdDashboard,
-  MdDns,
-  MdFormatListBulleted,
-  MdLibraryAdd,
-} from "react-icons/md";
 import { usePathname } from "next/navigation";
-import { IoStatsChart } from "react-icons/io5";
-import { IoMdAdd } from "react-icons/io";
-import { RxDragHandleHorizontal } from "react-icons/rx";
-import { RxDragHandleVertical } from "react-icons/rx";
-import { getCurrentUser } from "@/actions/getCurrentUser";
-import NullData from "../NullData";
 import { useCallback, useState } from "react";
 import { FaList } from "react-icons/fa";
 import { AiFillCaretDown } from "react-icons/ai";

@@ -16,12 +16,12 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
   return (
     <div className="flex flex-col gap-8 max-w-[1150px] m-auto">
       <div className="bg-white dark:bg-neutral-900 dark:text-white rounded-lg shadow-md p-6 mb-4">
-        <h2 className="font-semibold mt-4 mb-2">Products ordered</h2>
+        <h2 className="font-semibold mt-4 mb-2">Zamówione produkty:</h2>
         <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center">
-          <div className="col-span-2 justify-self-start">PRODUCT</div>
-          <div className="justify-self-center">PRICE</div>
-          <div className="justify-self-center">QTY</div>
-          <div className="justify-self-end">TOTAL</div>
+          <div className="col-span-2 justify-self-start">PRODUKT</div>
+          <div className="justify-self-center">CENA</div>
+          <div className="justify-self-center">ILOŚĆ</div>
+          <div className="justify-self-end">RAZEM</div>
         </div>
         {order.products &&
           order.products.map((item) => {
