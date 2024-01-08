@@ -52,7 +52,7 @@ const CheckoutClient = () => {
         .catch((error) => {
           setError(true);
           console.log("Error", error);
-          toast.error("Coś poszło nie tak");
+          toast.error("Something went wrong");
         });
     }
   }, [cartProducts, paymentIntent]);
@@ -79,17 +79,17 @@ const CheckoutClient = () => {
           />
         </Elements>
       )}
-      {loading && <div className="text-center dark:text-white">Ładowanie płatności</div>}
+      {loading && <div className="text-center">Loading Checkout</div>}
       {error && (
-        <div className="text-center text-rose-500">Coś poszło nie tak...</div>
+        <div className="text-center text-rose-500">Something went wrong...</div>
       )}
       {paymentSuccess && (
         <div className="flex items-center flex-col gap-4">
-          <div className="text-teal-500 text-center">Opłacono pomyślnie!</div>
+          <div className="text-teal-500 text-center">Payment Success</div>
           <div className="max-w-[220px] w-full">
             <Button
               label="View Your Orders"
-              onClick={() => router.push("/orders")}
+              onClick={() => router.push("/order")}
             />
           </div>
         </div>

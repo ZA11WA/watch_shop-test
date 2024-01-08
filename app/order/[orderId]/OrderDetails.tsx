@@ -69,6 +69,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
           </div>
           <div className="flex gap-2 items-center">
             <div>Status płatności:</div>
+            
             <div>
               {order.status === "pending" ? (
                 <Status

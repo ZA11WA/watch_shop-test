@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { buffer } from "stream/consumers";
 import Stripe from "stripe";
-const prisma = new PrismaClient();
+
 export const config = {
   api: {
     bodyParser: false,
