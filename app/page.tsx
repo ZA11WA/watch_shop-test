@@ -1,9 +1,10 @@
 export const revalidate = 0;
 
-import HomeBanner from "./components/HomeBanner/HomeBanner";
+
 import ProductCard from "./components/products/ProductCard";
 import getProducts, { IProductParams } from "@/actions/getProducts";
 import NullData from "./components/NullData";
+import Banner from "./components/Banner/Banner";
 
 interface HomeProps {
   searchParams: IProductParams;
@@ -28,7 +29,7 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <div className=" min-h-screen">
       <div className="ml-2 mr-2">
-        <HomeBanner />
+        <Banner />
       </div>
       <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {shuffledProducts.map((product: any) => {

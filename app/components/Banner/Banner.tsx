@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import 'tailwindcss/tailwind.css';
 
-import image1 from '../images/banner1.png';
+import image1 from '../images/G-SHOCK-baner.jpg';
 
 import image3 from '../images/standard-15.gif';
 
 
-const HomeBanner: React.FC = () => {
+const Banner: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const images = [image1, image3];
   const intervalDuration = 10000;
@@ -61,4 +61,4 @@ const HomeBanner: React.FC = () => {
   );
 };
 
-export default HomeBanner;
+export default Banner;
