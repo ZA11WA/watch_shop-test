@@ -9,6 +9,8 @@ import {
   MdAccessTimeFilled,
   MdDeliveryDining,
   MdDone,
+  MdOutlinePayments,
+  MdPayment,
   MdRemoveRedEye,
 } from "react-icons/md";
 import ActionBtn from "@/app/components/ActionBtn";
@@ -35,7 +37,6 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
         id: order.id,
         customer: order.user.name,
         amount: formatPrice(order.amount / 100),
-        paymentStatus: order.status,
         date: moment(order.createData).fromNow(),
         deliveryStatus: order.deliveryStatus,
       };
@@ -43,19 +44,22 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   }
 
   const columns: GridColDef[] = [
-    { field: "id",
-     headerName: 'ID',
+    {
+      field: "id",
+      headerName: "ID",
       width: 220,
       renderCell: (params) => {
         return <div className="dark:text-white">{params.row.id}</div>;
       },
-     },
-    { field: "customer",
-     headerName: "Użytkownik",
+    },
+    {
+      field: "customer",
+      headerName: "Użytkownik",
       width: 130,
       renderCell: (params) => {
         return <div className="dark:text-white">{params.row.customer}</div>;
-      }, },
+      },
+    },
     {
       field: "amount",
       headerName: "Cena",
@@ -69,34 +73,6 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       },
     },
 
-    {
-      field: "paymentStatus",
-      headerName: "Status płatności",
-      width: 130,
-      renderCell: (params) => {
-        return (
-          <div>
-            {params.row.paymentStatus === "pending" ? (
-              <Status
-                text="oczekuje"
-                icon={MdAccessTimeFilled}
-                bg="bg-slate-200"
-                color="text-slate-700"
-              />
-            ) : params.row.paymentStatus === "complete" ? (
-              <Status
-                text="opłacone"
-                icon={MdDone}
-                bg="bg-green-200"
-                color="text-green-700"
-              />
-            ) : (
-              <></>
-            )}
-          </div>
-        );
-      },
-    },
     {
       field: "deliveryStatus",
       headerName: "Status dostawy",
@@ -207,6 +183,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       <div className="mb-4 text-center text-gray-900 dark:text-white">
         <Heading title="Zamówienia" center />
       </div>
+
       <div style={{ height: 600, width: "100%" }}>
         <DataGrid
           rows={rows}

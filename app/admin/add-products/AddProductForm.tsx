@@ -10,8 +10,6 @@ import TextArea from "@/app/components/inputs/TextArea";
 import firebaseApp from "@/libs/firebase";
 import { categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
-import { useStepContext } from "@mui/material";
-import { register } from "module";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -22,10 +20,10 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 
-import { IconType } from "react-icons";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import SelectImage from "@/app/components/inputs/SelectImage";
+
 
 export type ImageType = {
   color: string;
@@ -104,36 +102,27 @@ const AddProductForm = () => {
               uploadTask.on(
                 "state_changed",
                 (snapshot) => {
-                  const progress =
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log("Upload is " + progress + "% done");
-                  switch (snapshot.state) {
-                    case "paused":
-                      console.log("Upload is paused");
-                      break;
-                    case "running":
-                      console.log("Upload is running");
-                      break;
-                  }
+                  
+                
+                  
                 },
                 (error) => {
-                  console.log("Error uploading image", error);
+                  console.log("Błąd w ładowaniu zdjęcia", error);
                   reject(error);
                 },
                 () => {
-                  // Handle successful uploads on complete
-                  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+               
                   getDownloadURL(uploadTask.snapshot.ref)
                     .then((downloadURL) => {
                       uploadedImages.push({
                         ...item,
                         image: downloadURL,
                       });
-                      console.log("File available at", downloadURL);
+                      
                       resolve();
                     })
                     .catch((error) => {
-                      console.log("Error getting the download URL", error);
+                      console.log("Error z URL zdjecia", error);
                       reject(error);
                     });
                 }
@@ -151,7 +140,7 @@ const AddProductForm = () => {
     await handleImageUploads();
     const productData = { ...data, images: uploadedImages };
     axios.post('/api/product', productData).then(()=>{
-      toast.success('Product created')
+      toast.success('Produkt dodany')
       setIsProductCreated(true)
       router.refresh()
     }).catch((error)=>{

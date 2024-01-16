@@ -67,29 +67,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
               )}
             </div>
           </div>
-          <div className="flex gap-2 items-center">
-            <div>Status płatności:</div>
-            
-            <div>
-              {order.status === "pending" ? (
-                <Status
-                  text="oczekuje"
-                  icon={MdAccessTimeFilled}
-                  bg="bg-slate-200"
-                  color="text-slate-700"
-                />
-              ) : order.status === "complete" ? (
-                <Status
-                  text="zapłacono"
-                  icon={MdDone}
-                  bg="bg-green-200"
-                  color="text-green-700"
-                />
-              ) : (
-                <></>
-              )}
-            </div>
-          </div>
+
           <div>Data: {moment(order.createData).fromNow()}</div>
         </div>
       </div>

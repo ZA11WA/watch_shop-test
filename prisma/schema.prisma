@@ -50,7 +50,7 @@ model Product {
     brand       String
     category    String
     inStock     Boolean
-    images       Image[]
+    images      Image[]
     reviews     Review[]
 }
 
@@ -71,7 +71,7 @@ model Order {
     userId          String            @db.ObjectId
     amount          Float
     currency        String
-    status          String
+    status          String?
     deliveryStatus  String?
     createData      DateTime          @default(now())
     paymentIntentId String            @unique

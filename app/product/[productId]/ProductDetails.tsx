@@ -10,6 +10,7 @@ import { Rating } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import toast from "react-hot-toast";
 
 interface ProductDetailsProps {
   product: any;
@@ -51,7 +52,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   });
 
   const router = useRouter();
-  console.log(cartProducts);
 
   useEffect(() => {
     setIsProductInCart(false);
@@ -65,8 +65,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       }
     }
   }, [cartProducts]);
-
-
 
   const handleColorSelect = useCallback(
     (value: SelectedImgType) => {
@@ -104,7 +102,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         handleColorSelect={handleColorSelect}
       />
       <div className="flex flex-col gap-1 text-gray-500 dark:text-white text-sm p-2">
-        <h2 className=" text-4xl font-medium text-gray-700 dark:text-white">{product.name}</h2>
+        <h2 className=" text-4xl font-medium text-gray-700 dark:text-white">
+          {product.name}
+        </h2>
 
         <Horizontal />
         <div className="text-justify text-base">{product.description}</div>
@@ -116,7 +116,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           <span className="font-semibold">FIRMA:</span> {product.brand}
         </div>
         <div className={product.inStock ? "text-green-400" : "text-red-400"}>
-          {product.inStock ? "Dostępny" : "Niedostępny"}
+          {product.inStock
+            ? "Dostępny"
+            : "Niedostępny - Produkt zakupiony zostanie zarezerwowany i wysłany w ciągu 1 miesiąca."}
         </div>
         <Horizontal />
         {isProductInCart ? (
