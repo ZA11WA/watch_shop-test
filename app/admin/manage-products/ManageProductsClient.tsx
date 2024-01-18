@@ -194,29 +194,57 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   return (
     <div className="max-w-[1150px] mx-auto my-8 p-3 bg-white dark:bg-neutral-900 rounded-xl shadow-lg">
       <div className="mb-4 text-center text-gray-900 dark:text-white">
-        <Heading title="Produkty" center />
+        <Heading title="Zarządzanie produktami" center />
       </div>
-      <div style={{ height: 600, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          className="bg-white dark:bg-neutral-600"
-          getRowClassName={(params) =>
-            `my-2 rounded-lg ${
-              params.indexRelativeToCurrentPage % 2 === 0
-                ? "bg-neutral-50 dark:bg-neutral-900"
-                : "bg-white dark:bg-neutral-800"
-            }`
-          }
-        />
+      <div className="overflow-x-auto relative">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="py-3 px-6">ID</th>
+              <th scope="col" className="py-3 px-6">Nazwa</th>
+              <th scope="col" className="py-3 px-6">Cena</th>
+              <th scope="col" className="py-3 px-6">Kategoria</th>
+              <th scope="col" className="py-3 px-6">Firma</th>
+              <th scope="col" className="py-3 px-6">Dostępność</th>
+              <th scope="col" className="py-3 px-6">Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product, index) => (
+              <tr key={product.id} className={`${index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-900'}`}>
+                <td className="py-4 px-6">{product.id}</td>
+                <td className="py-4 px-6">{product.name}</td>
+                <td className="py-4 px-6">{formatPrice(product.price)}</td>
+                <td className="py-4 px-6">{product.category}</td>
+                <td className="py-4 px-6">{product.brand}</td>
+                <td className="py-4 px-6">
+                  <Status
+                    text={product.inStock ? "Dostępny" : "Niedostępny"}
+                    icon={product.inStock ? MdDone : MdClose}
+                    bg={product.inStock ? "bg-teal-200" : "bg-rose-200"}
+                    color={product.inStock ? "text-teal-700" : "text-rose-700"}
+                  />
+                </td>
+                <td className="py-4 px-6">
+                  <div className="flex justify-start items-center space-x-4">
+                    <ActionBtn
+                      icon={MdCached}
+                      onClick={() => handleToggleStock(product.id, product.inStock)}
+                    />
+                    <ActionBtn
+                      icon={MdRemoveRedEye}
+                      onClick={() => router.push(`/product/${product.id}`)}
+                    />
+                    <ActionBtn
+                      icon={MdDelete}
+                      onClick={() => handleDelete(product.id, product.images)}
+                    />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

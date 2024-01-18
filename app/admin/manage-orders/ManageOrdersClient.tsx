@@ -183,28 +183,71 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       <div className="mb-4 text-center text-gray-900 dark:text-white">
         <Heading title="Zamówienia" center />
       </div>
-
-      <div style={{ height: 600, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          className="bg-white dark:bg-neutral-600"
-          getRowClassName={(params) =>
-            `my-2 rounded-lg ${
-              params.indexRelativeToCurrentPage % 2 === 0
-                ? "bg-neutral-50 dark:bg-neutral-900"
-                : "bg-white dark:bg-neutral-800"
-            }`
-          }
-        />
+      <div className="overflow-x-auto relative">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="py-3 px-6">ID</th>
+              <th scope="col" className="py-3 px-6">Użytkownik</th>
+              <th scope="col" className="py-3 px-6">Cena</th>
+              <th scope="col" className="py-3 px-6">Status dostawy</th>
+              <th scope="col" className="py-3 px-6">Data</th>
+              <th scope="col" className="py-3 px-6">Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order, index) => (
+              <tr key={order.id} className={`${index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-900'}`}>
+                <td className="py-4 px-6">{order.id}</td>
+                <td className="py-4 px-6">{order.user.name}</td>
+                <td className="py-4 px-6">{formatPrice(order.amount / 100)}</td>
+                <td className="py-4 px-6">
+                  {order.deliveryStatus === "pending" ? (
+                    <Status
+                      text="oczekuje"
+                      icon={MdAccessTimeFilled}
+                      bg="bg-slate-200"
+                      color="text-slate-700"
+                    />
+                  ) : order.deliveryStatus === "dispatched" ? (
+                    <Status
+                      text="w drodze"
+                      icon={MdDeliveryDining}
+                      bg="bg-purple-200"
+                      color="text-purple-700"
+                    />
+                  ) : order.deliveryStatus === "delivered" ? (
+                    <Status
+                      text="dostarczone"
+                      icon={MdDone}
+                      bg="bg-green-200"
+                      color="text-green-700"
+                    />
+                  ) : (
+                    <div className="dark:text-white">N/A</div>
+                  )}
+                </td>
+                <td className="py-4 px-6">{moment(order.createData).fromNow()}</td>
+                <td className="py-4 px-6">
+                  <div className="flex justify-start items-center space-x-4">
+                    <ActionBtn
+                      icon={MdDeliveryDining}
+                      onClick={() => handleDispatch(order.id)}
+                    />
+                    <ActionBtn
+                      icon={MdDone}
+                      onClick={() => handleDeliver(order.id)}
+                    />
+                    <ActionBtn
+                      icon={MdRemoveRedEye}
+                      onClick={() => router.push(`/order/${order.id}`)}
+                    />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

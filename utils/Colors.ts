@@ -1,9 +1,7 @@
 export const colors = [
-  
-    {
-        color: 'Default',
-        colorCode: '#000000',
-        image: null
-    },
-    
-]
+  {
+    color: "Domyślny",
+    colorCode: "#000000",
+    image: null,
+  },
+];
