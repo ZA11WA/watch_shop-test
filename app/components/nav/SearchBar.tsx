@@ -29,18 +29,16 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="relative flex items-center  rounded-lg focus-within:shadow-lg bg-white overflow-hidden dark:bg-neutral-700 dark:text-white">
-  
-  
-  <input
-  {...register("searchTerm")}
-  autoComplete="off"
-  type="text"
-  id="search"
-  placeholder="Szukaj..."
-  className="p-2 rounded-l-md focus:outline-non"
+    <div className="flex justify-center w-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="relative flex items-center rounded-lg focus-within:shadow-lg bg-white overflow-hidden dark:bg-neutral-700 dark:text-white w-full md:max-w-xs">
+      <input
+        {...register("searchTerm")}
+        autoComplete="off"
+        type="text"
+        id="search"
+        placeholder="Szukaj..."
+        className="p-2 rounded-l-md focus:outline-none w-full"
+      
   onKeyPress={(event) => {
     if (event.key === 'Enter') {
       event.preventDefault(); 
