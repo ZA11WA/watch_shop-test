@@ -2,7 +2,6 @@ import getProducts from "@/actions/getProducts";
 import Summary from "./Summary";
 import getOrders from "@/actions/getOrders";
 import getUsers from "@/actions/getUsers";
-import Container from "../components/Container";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import NullData from "../components/NullData";
 
@@ -16,9 +15,7 @@ const Admin = async () => {
   }
   return (
     <div className="pt-8">
-      <Container>
-        <Summary products={products} orders={orders} users={users} />
-      </Container>
+      <Summary products={products} orders={orders} users={users} />
     </div>
   );
 };

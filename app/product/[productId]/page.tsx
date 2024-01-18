@@ -1,6 +1,4 @@
-import { Container } from "@mui/material";
 import ProductDetails from "./ProductDetails";
-
 import getProductById from "@/actions/getProductById";
 import NullData from "@/app/components/NullData";
 
@@ -14,12 +12,10 @@ const Product = async ({ params }: { params: IPrams }) => {
   if (!product) return <NullData title="Produkt z tym ID nie istnieje!" />;
 
   return (
-    <div className="p-2 ">
-      <Container>
-        <div className="mt-14 flex items-center justify-center ">
-          <ProductDetails product={product} />
-        </div>
-      </Container>
+    <div className="max-w-[1920px] mx-auto xl:px-20 md:px-2 px02">
+      <div className="p-2 mt-14 flex justify-center items-center">
+        <ProductDetails product={product} />
+      </div>
     </div>
   );
 };

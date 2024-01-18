@@ -67,16 +67,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit} id="payment-form">
-      <div className="mb-6">
-        <Heading title="Enter your detaild to complete checkout!" />
+      <div className="mb-6 dark:text-white">
+        <Heading title="Wprowadź dane do płatności!" />
       </div>
-      <h2 className="font-semibold mt-4 mb-2">Dane adresowe</h2>
+      <h2 className="font-semibold mt-4 mb-2 dark:text-white">Dane adresowe</h2>
       <AddressElement
         options={{ mode: "shipping", allowedCountries: ["PL"] }}
       />
-      <h2 className="font-semibold mt-4 mb-2">Dane płatności</h2>
+      <h2 className="font-semibold mt-4 mb-2 dark:text-white">Dane płatności</h2>
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
-      <div className="py-4 text-center text-slate-700 text-2xl font-bold">
+      <div className="py-4 text-center text-black text-2xl font-bold dark:text-white">
         Total: {formattedPrice}
       </div>
       <Button

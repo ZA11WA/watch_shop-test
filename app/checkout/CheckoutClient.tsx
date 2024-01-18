@@ -79,7 +79,7 @@ const CheckoutClient = () => {
           />
         </Elements>
       )}
-      {loading && <div className="text-center">Ładowanie płatności</div>}
+      {loading && <div className="text-center dark:text-white">Ładowanie płatności</div>}
       {error && (
         <div className="text-center text-rose-500">Coś poszło nie tak...</div>
       )}
@@ -89,7 +89,7 @@ const CheckoutClient = () => {
           <div className="max-w-[220px] w-full">
             <Button
               label="Twoje zamówienia"
-              onClick={() => router.push("/order")}
+              onClick={() => router.push("/orders")}
             />
           </div>
         </div>

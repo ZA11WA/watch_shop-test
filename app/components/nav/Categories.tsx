@@ -1,7 +1,6 @@
 "use client";
 import React, { useCallback, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import Container from "../Container";
 import Category from "./Category";
 import { categories } from "@/utils/Categories";
 import BackDrop from "./BackDrop";
@@ -42,23 +41,21 @@ const Categories = () => {
       <div
         className={`fixed top-0 left-0 h-full w-52 bg-white dark:bg-neutral-700 overflow-auto z-40 transition-transform duration-300 ${menuClasses}`}
       >
-        <Container>
-          <div className="flex flex-col gap-1">
-            {categories.map((item) => (
-              <div key={item.label} onClick={handleCategorySelect}>
-                <Category
-                  key={item.label}
-                  label={item.label}
-                  icon={item.icon}
-                  selected={
-                    category === item.label ||
-                    (category === null && item.label === "Wszystkie")
-                  }
-                />
-              </div>
-            ))}
-          </div>
-        </Container>
+        <div className="flex flex-col gap-1">
+          {categories.map((item) => (
+            <div key={item.label} onClick={handleCategorySelect}>
+              <Category
+                key={item.label}
+                label={item.label}
+                icon={item.icon}
+                selected={
+                  category === item.label ||
+                  (category === null && item.label === "Wszystkie")
+                }
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
