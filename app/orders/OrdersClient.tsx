@@ -6,12 +6,13 @@ import { formatPrice } from "@/utils/formatPrice";
 import Heading from "@/app/components/Heading/Heading";
 import Status from "@/app/components/Status";
 import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from "react-icons/md";
-import { BsEyeglasses } from "react-icons/bs";
+
 import ActionBtn from "@/app/components/ActionBtn";
 import { useRouter } from "next/navigation";
 import { IoSearchOutline } from "react-icons/io5";
 
 import moment from "moment";
+import { TbTruckDelivery } from "react-icons/tb";
 interface OrdersClientProps {
   orders: ExtendedOrder[];
 }
@@ -65,7 +66,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
                       order.deliveryStatus === "pending"
                         ? MdAccessTimeFilled
                         : order.deliveryStatus === "dispatched"
-                        ? MdDeliveryDining
+                        ? TbTruckDelivery
                         : MdDone
                     }
                     bg={
