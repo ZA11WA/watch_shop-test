@@ -23,27 +23,27 @@ type SummaryDataType = {
 const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   const [summaryData, setSummaryData] = useState<SummaryDataType>({
     sale: {
-      label: "",
+      label: "Kwota całkowita",
       digit: 0,
     },
     products: {
-      label: "Total Products",
+      label: "Ilość produktów",
       digit: 0,
     },
     orders: {
-      label: "Total Orders",
+      label: "Ilość zamówień",
       digit: 0,
     },
     paidOrders: {
-      label: "Paid Orders",
+      label: "Opłacone zamówienia",
       digit: 0,
     },
     unpaidOrders: {
-      label: "Unpaid Orders",
+      label: "Nieopłacone zamówienia",
       digit: 0,
     },
     users: {
-      label: "Total Users",
+      label: "Ilość użytkowników",
       digit: 0,
     },
   });
