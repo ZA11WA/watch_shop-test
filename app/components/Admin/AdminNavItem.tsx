@@ -1,6 +1,5 @@
 // AdminNavItem.js
 import React from "react";
-import { IconType } from "react-icons";
 
 interface AdminNavItemProps {
   selected?: boolean;

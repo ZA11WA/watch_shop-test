@@ -159,8 +159,6 @@ export const CartContextProvider = (props: Props) => {
     [paymentIntent]
   );
 
-
-
   const value = {
     cartTotalQty,
     cartTotalAmount,

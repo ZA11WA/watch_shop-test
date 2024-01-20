@@ -5,7 +5,6 @@ import ProductImage from "@/app/components/products/ProductImage";
 import SetQuantity from "@/app/components/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
 import { MdCheckCircle } from "react-icons/md";
-
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -95,7 +94,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   const theme = useTheme();
   return (
-    <div className="border-[1.5px] border-stone-300  px-2 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="min-h-screen">
+
+    <div className=" border-[1.5px] border-stone-300  px-2 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-12">
       <ProductImage
         cartProduct={cartProduct}
         product={product}
@@ -158,6 +159,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           </>
         )}
       </div>
+    </div>
     </div>
   );
 };

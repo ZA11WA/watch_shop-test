@@ -20,10 +20,8 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 
-
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
 
 export type ImageType = {
   color: string;
@@ -37,11 +35,10 @@ export type UploadedImageType = {
 };
 
 const AddProductForm = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[] | null>();
   const [isProductCreated, setIsProductCreated] = useState(false);
-  
 
   const {
     register,
@@ -101,24 +98,19 @@ const AddProductForm = () => {
             await new Promise<void>((resolve, reject) => {
               uploadTask.on(
                 "state_changed",
-                (snapshot) => {
-                  
-                
-                  
-                },
+                (snapshot) => {},
                 (error) => {
                   console.log("Błąd w ładowaniu zdjęcia", error);
                   reject(error);
                 },
                 () => {
-               
                   getDownloadURL(uploadTask.snapshot.ref)
                     .then((downloadURL) => {
                       uploadedImages.push({
                         ...item,
                         image: downloadURL,
                       });
-                      
+
                       resolve();
                     })
                     .catch((error) => {
@@ -139,15 +131,19 @@ const AddProductForm = () => {
 
     await handleImageUploads();
     const productData = { ...data, images: uploadedImages };
-    axios.post('/api/product', productData).then(()=>{
-      toast.success('Produkt dodany')
-      setIsProductCreated(true)
-      router.refresh()
-    }).catch((error)=>{
-      toast.error('Coś poszło nie tak w zapisie produktu do bazy danych.')
-    }).finally(()=>{
-      setIsLoading(false)
-    })
+    axios
+      .post("/api/product", productData)
+      .then(() => {
+        toast.success("Produkt dodany");
+        setIsProductCreated(true);
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error("Coś poszło nie tak w zapisie produktu do bazy danych.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const category = watch("category");
@@ -178,7 +174,7 @@ const AddProductForm = () => {
       return prev;
     });
   }, []);
-  
+
   return (
     <div className="bg-gray-100 dark:bg-neutral-900 dark:text-white p-8 rounded-md shadow-lg max-w-2xl mx-auto my-10">
       <Heading title="Dodaj produkt" center />
@@ -190,7 +186,6 @@ const AddProductForm = () => {
           register={register}
           errors={errors}
           required
-          
         />
         <Input
           id="price"
@@ -200,7 +195,6 @@ const AddProductForm = () => {
           errors={errors}
           type="number"
           required
-          
         />
         <Input
           id="brand"
@@ -209,7 +203,6 @@ const AddProductForm = () => {
           register={register}
           errors={errors}
           required
-          
         />
         <TextArea
           id="description"
@@ -218,13 +211,11 @@ const AddProductForm = () => {
           register={register}
           errors={errors}
           required
-          
         />
         <CustomCheckBox
           id="inStock"
           register={register}
           label="Ten produkt jest dostępny"
-          
         />
 
         <div className="w-full font-medium">
@@ -241,7 +232,6 @@ const AddProductForm = () => {
                   selected={category === item.label}
                   label={item.label}
                   icon={item.icon}
-                  
                 />
               );
             })}
@@ -261,14 +251,12 @@ const AddProductForm = () => {
               addImageToState={addImageToState}
               removeImageFromState={removeImageToState}
               isProductCreated={isProductCreated}
-              
             />
           ))}
         </div>
         <Button
           label={isLoading ? "Ładowanie..." : "Dodaj produkt"}
           onClick={handleSubmit(onSubmit)}
-          
         />
       </form>
     </div>

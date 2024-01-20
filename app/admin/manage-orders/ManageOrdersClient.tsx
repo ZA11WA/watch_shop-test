@@ -1,18 +1,11 @@
 "use client";
 
 import { Order, User } from "@prisma/client";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
 import { formatPrice } from "@/utils/formatPrice";
 import Heading from "@/app/components/Heading/Heading";
 import Status from "@/app/components/Status";
-import {
-  MdAccessTimeFilled,
- 
-  MdDone,
-  MdOutlinePayments,
-  MdPayment,
-  MdRemoveRedEye,
-} from "react-icons/md";
+import { MdAccessTimeFilled, MdDone } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 import ActionBtn from "@/app/components/ActionBtn";
 import { useCallback } from "react";
@@ -65,7 +58,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 
   return (
     <div className="max-w-[1150px] mx-auto my-8 p-6 bg-white dark:bg-neutral-900 rounded-xl shadow-lg">
-    <div className="mb-4 text-center text-black dark:text-white">
+      <div className="mb-4 text-center text-black dark:text-white">
         <Heading title="Zamówienia" center />
       </div>
       <div className="overflow-x-auto relative">
@@ -98,8 +91,8 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
                 key={order.id}
                 className={`${
                   index % 2 === 0
-                  ? "bg-white dark:bg-neutral-800"
-                  : "bg-neutral-50 dark:bg-neutral-900"
+                    ? "bg-white dark:bg-neutral-800"
+                    : "bg-neutral-50 dark:bg-neutral-900"
                 }`}
               >
                 <td className="py-4 px-6">{order.id}</td>

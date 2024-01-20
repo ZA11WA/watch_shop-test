@@ -1,4 +1,3 @@
-import { Icon } from "@mui/material";
 import { IconType } from "react-icons";
 
 interface CategoryInputProps {

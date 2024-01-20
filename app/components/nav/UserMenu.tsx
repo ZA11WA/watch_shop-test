@@ -7,7 +7,6 @@ import Link from "next/link";
 import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 import BackDrop from "./BackDrop";
-import { User } from "@prisma/client";
 import { SafeUser } from "@/types";
 
 interface UserMenuProps {
@@ -28,7 +27,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           onClick={toogleOpen}
           className="p-2 border-[1px] border-neutral-900-700 dark:border-neutral-700 flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700 dark:text-white"
         >
-          <Avatar src={currentUser?.image}/>
+          <Avatar src={currentUser?.image} />
           <AiFillCaretDown />
         </div>
         {isOpen && (
@@ -38,7 +37,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           >
             {currentUser ? (
               <div className="text-center">
-                {currentUser.role === 'ADMIN' && (
+                {currentUser.role === "ADMIN" && (
                   <Link href="/admin">
                     <MenuItem onClick={toogleOpen}>Admin</MenuItem>
                   </Link>
@@ -52,7 +51,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                     signOut();
                   }}
                 >
-                  Wyloguj 
+                  Wyloguj
                 </MenuItem>
               </div>
             ) : (
@@ -61,7 +60,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   <MenuItem onClick={toogleOpen}>Zaloguj się</MenuItem>
                 </Link>
                 <Link href="/register">
-                  <hr/>
+                  <hr />
                   <MenuItem onClick={toogleOpen}>Zarejestruj się</MenuItem>
                 </Link>
               </div>
