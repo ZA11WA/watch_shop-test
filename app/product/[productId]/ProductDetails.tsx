@@ -9,7 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 
 interface ProductDetailsProps {
   product: any;
@@ -95,71 +95,71 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const theme = useTheme();
   return (
     <div className="min-h-screen">
+      <div className=" border-[1.5px] border-stone-300  px-2 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-12">
+        <ProductImage
+          cartProduct={cartProduct}
+          product={product}
+          handleColorSelect={handleColorSelect}
+        />
+        <div className="flex flex-col gap-1 text-gray-500 dark:text-white text-sm p-2">
+          <h2 className=" text-4xl font-medium text-gray-700 dark:text-white">
+            {product.name}
+          </h2>
 
-    <div className=" border-[1.5px] border-stone-300  px-2 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-12">
-      <ProductImage
-        cartProduct={cartProduct}
-        product={product}
-        handleColorSelect={handleColorSelect}
-      />
-      <div className="flex flex-col gap-1 text-gray-500 dark:text-white text-sm p-2">
-        <h2 className=" text-4xl font-medium text-gray-700 dark:text-white">
-          {product.name}
-        </h2>
-
-        <Horizontal />
-        <div className="text-justify text-base">{product.description}</div>
-        <Horizontal />
-        <div className="text-lg">
-          <span className="font-semibold">KATEGORIA:</span> {product.category}
-        </div>
-        <div className="text-lg">
-          <span className="font-semibold">FIRMA:</span> {product.brand}
-        </div>
-        <div className={product.inStock ? "text-green-400" : "text-red-600"}>
-          {product.inStock
-            ? "Dostępny"
-            : "Niedostępny - Produkt zakupiony zostanie zarezerwowany i wysłany w ciągu 1 miesiąca."}
-        </div>
-        <Horizontal />
-        {isProductInCart ? (
-          <div className="">
-            <p className="mb-2 text-slate-500 dark:text-white flex items-center gap-1">
-              <MdCheckCircle className="text-green-400" size={20} />
-              <span>Produkt dodany do karty</span>
-            </p>
-            <div className="max-w-[300px] ">
-              <Button
-                label="Wyświetl koszyk"
-                outline
-                onClick={() => {
-                  router.push("/cart");
-                }}
-              />
-            </div>
+          <Horizontal />
+          <div className="text-justify text-base">{product.description}</div>
+          <Horizontal />
+          <div className="text-lg">
+            <span className="font-semibold">KATEGORIA:</span> {product.category}
           </div>
-        ) : (
-          <>
-            <SetQuantity
-              cartProduct={cartProduct}
-              handleQtyIncrease={handleQtyIncrease}
-              handleQtyDecrease={handleQtyDecrease}
-            />
-            <Horizontal />
-            <div className="text-lg">
-              <span className="font-semibold">CENA:</span> {formatPrice(product.price)}
+          <div className="text-lg">
+            <span className="font-semibold">FIRMA:</span> {product.brand}
+          </div>
+          <div className={product.inStock ? "text-green-400" : "text-red-600"}>
+            {product.inStock
+              ? "Dostępny"
+              : "Niedostępny - Produkt zakupiony zostanie zarezerwowany i wysłany w ciągu 1 miesiąca."}
+          </div>
+          <Horizontal />
+          {isProductInCart ? (
+            <div className="">
+              <p className="mb-2 text-slate-500 dark:text-white flex items-center gap-1">
+                <MdCheckCircle className="text-green-400" size={20} />
+                <span>Produkt dodany do karty</span>
+              </p>
+              <div className="max-w-[300px] ">
+                <Button
+                  label="Wyświetl koszyk"
+                  outline
+                  onClick={() => {
+                    router.push("/cart");
+                  }}
+                />
+              </div>
             </div>
-            <Horizontal />
-            <div className="max-w-[300px]">
-              <Button
-                label="Dodaj do koszyka"
-                onClick={() => handleAddProductToCart(cartProduct)}
+          ) : (
+            <>
+              <SetQuantity
+                cartProduct={cartProduct}
+                handleQtyIncrease={handleQtyIncrease}
+                handleQtyDecrease={handleQtyDecrease}
               />
-            </div>
-          </>
-        )}
+              <Horizontal />
+              <div className="text-lg">
+                <span className="font-semibold">CENA:</span>{" "}
+                {convertPrice(product.price)}
+              </div>
+              <Horizontal />
+              <div className="max-w-[300px]">
+                <Button
+                  label="Dodaj do koszyka"
+                  onClick={() => handleAddProductToCart(cartProduct)}
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };

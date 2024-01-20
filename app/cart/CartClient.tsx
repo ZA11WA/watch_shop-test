@@ -5,15 +5,15 @@ import { MdArrowBack } from "react-icons/md";
 import Heading from "../components/Heading/Heading";
 import Button from "../components/Button/Button";
 import ItemContent from "./ItemContent";
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 import { SafeUser } from "@/types";
 import { useRouter } from "next/navigation";
 
 interface CartClientProps {
-  currentUser: SafeUser | null;
+  activeUser: SafeUser | null;
 }
 
-const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
+const CartClient: React.FC<CartClientProps> = ({ activeUser: currentUser }) => {
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
 
   const router = useRouter();
@@ -52,14 +52,14 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
               <h2 className="text-lg font-semibold mb-4">Do zapłaty</h2>
               <div className="flex justify-between mb-2">
                 <span>Kwota:</span>
-                <span>{formatPrice(cartTotalAmount)}</span>
+                <span>{convertPrice(cartTotalAmount)}</span>
               </div>
 
               <hr className="my-2" />
               <div className="flex justify-between mb-2">
                 <span className="font-semibold ">Kwota całkowita:</span>
                 <span className="font-semibold">
-                  {formatPrice(cartTotalAmount)}
+                  {convertPrice(cartTotalAmount)}
                 </span>
               </div>
               <Button

@@ -2,7 +2,7 @@
 
 import { Order, User } from "@prisma/client";
 import { GridColDef } from "@mui/x-data-grid";
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 import Heading from "@/app/components/Heading/Heading";
 import Status from "@/app/components/Status";
 import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from "react-icons/md";
@@ -52,7 +52,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
               >
                 <td className="py-4 px-6">{order.id}</td>
                 <td className="py-4 px-6">{order.user.name}</td>
-                <td className="py-4 px-6">{formatPrice(order.amount / 100)}</td>
+                <td className="py-4 px-6">{convertPrice(order.amount / 100)}</td>
                 <td className="py-4 px-6">
                   <Status
                     text={

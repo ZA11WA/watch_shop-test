@@ -72,7 +72,6 @@ const AddProductForm = () => {
   }, [isProductCreated]);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("Product Data", data);
     setIsLoading(true);
     let uploadedImages: UploadedImageType[] = [];
 
@@ -114,7 +113,6 @@ const AddProductForm = () => {
                       resolve();
                     })
                     .catch((error) => {
-                      console.log("Error z URL zdjecia", error);
                       reject(error);
                     });
                 }

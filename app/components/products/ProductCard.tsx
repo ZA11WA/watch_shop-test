@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 
 interface ProductCardProps {
   data: any;
@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
             {data.name}
           </p>
           <p className="text-left text-sm text-gray-800 dark:text-white mt-1">
-            {formatPrice(data.price)}
+            {convertPrice(data.price)}
           </p>
         </div>
       </div>

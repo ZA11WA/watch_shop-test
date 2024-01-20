@@ -13,10 +13,10 @@ import toast from "react-hot-toast";
 import { SafeUser } from "@/types";
 
 interface LoginFormProps {
-  currentUser: SafeUser | null;
+  activeUser: SafeUser | null;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ activeUser: activeUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -32,7 +32,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (currentUser) {
+    if (activeUser) {
       router.push("/");
       router.refresh();
     }
@@ -54,7 +54,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
     });
   };
 
-  if (currentUser) {
+  if (activeUser) {
     return <p className="text-center">Zalogowano pomyślnie</p>;
   }
 

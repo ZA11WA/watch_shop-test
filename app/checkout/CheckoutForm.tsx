@@ -1,7 +1,7 @@
 "use client";
 
 import { useCart } from "@/hooks/useCart";
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 import {
   AddressElement,
   PaymentElement,
@@ -27,7 +27,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
-  const formattedPrice = formatPrice(cartTotalAmount);
+  const formattedPrice = convertPrice(cartTotalAmount);
 
   useEffect(() => {
     if (!stripe) {

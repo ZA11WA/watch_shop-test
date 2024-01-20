@@ -1,7 +1,7 @@
 "use client";
 
 import { Product } from "@prisma/client";
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 import Heading from "@/app/components/Heading/Heading";
 import Status from "@/app/components/Status";
 import { MdCached, MdClose, MdDelete, MdDone } from "react-icons/md";
@@ -13,12 +13,10 @@ import { useRouter } from "next/navigation";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import firebaseApp from "@/libs/firebase";
 import { IoSearchOutline } from "react-icons/io5";
-interface ManageProductsClientProps {
+interface ManageProductsProps {
   products: Product[];
 }
-const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
-  products,
-}) => {
+const ManageProductsForm: React.FC<ManageProductsProps> = ({ products }) => {
   const router = useRouter();
   const storage = getStorage(firebaseApp);
 
@@ -47,7 +45,6 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
           if (item.image) {
             const imageRef = ref(storage, item.image);
             await deleteObject(imageRef);
-            console.log("image deleted", item.image);
           }
         }
       } catch (error) {
@@ -113,7 +110,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
               >
                 <td className="py-4 px-6">{product.id}</td>
                 <td className="py-4 px-6">{product.name}</td>
-                <td className="py-4 px-6">{formatPrice(product.price)}</td>
+                <td className="py-4 px-6">{convertPrice(product.price)}</td>
                 <td className="py-4 px-6">{product.category}</td>
                 <td className="py-4 px-6">{product.brand}</td>
                 <td className="py-4 px-6">
@@ -151,4 +148,4 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   );
 };
 
-export default ManageProductsClient;
+export default ManageProductsForm;

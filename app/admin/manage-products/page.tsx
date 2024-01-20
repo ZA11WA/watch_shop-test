@@ -1,18 +1,18 @@
-import ManageProductsClient from "./ManageProductsClient";
+import ManageProductsForm from "./ManageProductsForm";
 import getProducts from "@/actions/getProducts";
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 import NullData from "@/app/components/NullData";
 
 const ManageProducts = async () => {
   const products = await getProducts({ category: null });
-  const currentUser = await getCurrentUser();
+  const activeUser = await getActiveUser();
 
-  if (!currentUser || currentUser.role !== "ADMIN") {
+  if (!activeUser || activeUser.role !== "ADMIN") {
     return <NullData title="Brak dostępu" />;
   }
   return (
     <div className="pt-8">
-      <ManageProductsClient products={products} />
+      <ManageProductsForm products={products} />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import AddProductForm from "./AddProductForm";
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 import NullData from "@/app/components/NullData";
 
 const AddProducts = async () => {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getActiveUser();
   if (!currentUser || currentUser.role !== "ADMIN") {
     return <NullData title="Brak dostępu" />;
   }

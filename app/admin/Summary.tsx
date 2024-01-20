@@ -3,7 +3,9 @@
 import { Order, Product, User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Heading from "../components/Heading/Heading";
-import { formatNumber } from "@/utils/formatNumber";
+import { convertNumber } from "@/utils/convertNumber";
+import { convertPrice } from "@/utils/convertPrice";
+import { convertPLN } from "@/utils/convertPLN";
 
 interface SummaryProps {
   orders: Order[];
@@ -21,7 +23,7 @@ type SummaryDataType = {
 const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   const [summaryData, setSummaryData] = useState<SummaryDataType>({
     sale: {
-      label: "Total Sale",
+      label: "",
       digit: 0,
     },
     products: {
@@ -73,7 +75,7 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   }, [orders, products, users]);
 
   const summaryKeys = Object.keys(summaryData);
-
+  
   return (
     <div className="max-2-[1150px] mx-auto  dark:bg-neutral-800">
       <div className="mb-4 mt-2 dark:text-white">
@@ -88,7 +90,10 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
                 className="rounded-3xl border-2 p-4 flex flex-col items-center gap-2 dark:bg-neutral-900 border-neutral-100 dark:border-neutral-600 dark:text-white shadow-md transition"
               >
                 <div className="text-xl md:text-4xl font-extrabold text-center dark:text-white">
-                  {formatNumber(summaryData[key].digit)}
+                  
+                {key === 'sale'
+          ? convertPLN(summaryData[key].digit)
+          : convertNumber(summaryData[key].digit)}
                 </div>
                 <div className="text-center"></div>
                 <div className="text-center">{summaryData[key].label}</div>

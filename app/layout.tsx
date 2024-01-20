@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import NavBar from "./components/nav/NavBar";
 import CartProvider from "@/providers/CartProvider";
 import { Toaster } from "react-hot-toast";
-import FooterList from "./components/footer/FooterList";
+import Footer from "./components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Tempo Zegara",
@@ -34,7 +34,7 @@ export default async function RootLayout({
           <div className="flex flex-col min-h-screen">
             <NavBar />
             <main className="flex-grow">{children}</main>
-            <FooterList />
+            <Footer />
           </div>
         </CartProvider>
       </body>

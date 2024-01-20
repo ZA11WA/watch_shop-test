@@ -2,7 +2,7 @@
 
 import Heading from "@/app/components/Heading/Heading";
 import Status from "@/app/components/Status";
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 import { Order } from "@prisma/client";
 import moment from "moment";
 import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from "react-icons/md";
@@ -36,7 +36,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
           <div>ID zamówienia: {order.id}</div>
           <div>
             Kwota całkowita:{" "}
-            <span className="font-bold">{formatPrice(order.amount / 100)}</span>
+            <span className="font-bold">{convertPrice(order.amount / 100)}</span>
           </div>
 
           <div className="flex gap-2 items-center">

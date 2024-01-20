@@ -8,7 +8,6 @@ interface IPrams {
 
 const Order = async ({ params }: { params: IPrams }) => {
   const order = await getOrderById(params);
-  console.log("params", params);
 
   if (!order) return <NullData title="Brak zamówienia"></NullData>;
   return (

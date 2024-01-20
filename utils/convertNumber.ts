@@ -1,3 +1,3 @@
-export const formatNumber = (digit: number) => {
+export const convertNumber = (digit: number) => {
   return new Intl.NumberFormat("pl-PL").format(digit);
 };

@@ -1,9 +1,9 @@
 import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 
 export async function PUT(request: Request) {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getActiveUser();
 
   if (!currentUser) return NextResponse.error();
 

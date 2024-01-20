@@ -2,7 +2,7 @@
 
 import { Order, User } from "@prisma/client";
 
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 import Heading from "@/app/components/Heading/Heading";
 import Status from "@/app/components/Status";
 import { MdAccessTimeFilled, MdDone } from "react-icons/md";
@@ -22,7 +22,7 @@ interface ManageOrdersClientProps {
 type ExtendedOrder = Order & {
   user: User;
 };
-const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
+const ManageOrdersForm: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   const router = useRouter();
 
   const handleDispatch = useCallback((id: string) => {
@@ -97,7 +97,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
               >
                 <td className="py-4 px-6">{order.id}</td>
                 <td className="py-4 px-6">{order.user.name}</td>
-                <td className="py-4 px-6">{formatPrice(order.amount / 100)}</td>
+                <td className="py-4 px-6">{convertPrice(order.amount / 100)}</td>
                 <td className="py-4 px-6">
                   {order.deliveryStatus === "pending" ? (
                     <Status
@@ -152,4 +152,4 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   );
 };
 
-export default ManageOrdersClient;
+export default ManageOrdersForm;

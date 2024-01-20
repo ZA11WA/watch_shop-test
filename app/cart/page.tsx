@@ -1,11 +1,11 @@
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 import CartClient from "./CartClient";
 
 const Cart = async () => {
-  const currentUser = await getCurrentUser();
+  const activeUser = await getActiveUser();
   return (
     <div className="">
-      <CartClient currentUser={currentUser} />
+      <CartClient activeUser={activeUser} />
     </div>
   );
 };

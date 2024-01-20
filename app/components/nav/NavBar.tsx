@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 import SearchBar from "./SearchBar";
 import ThemeSwitcher from "../Button/ThemeSwitcher";
 import { SafeUser } from "@/types";
@@ -12,7 +12,7 @@ interface UserMenuProps {
 }
 
 const NavBar = async () => {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getActiveUser();
 
   return (
     <div className="sticky top-0 w-full bg-stone-100 dark:bg-neutral-900 z-30 shadow-md mb-1 px-3">
@@ -35,7 +35,7 @@ const NavBar = async () => {
           <div className="flex items-center gap-6 md:gap-8 dark:text-white mt-4 md:mt-0 justify-center md:justify-end w-full md:w-auto order-2 md:order-3">
             <ThemeSwitcher />
             <CartCount />
-            <UserMenu currentUser={currentUser} />
+            <UserMenu activeUser={currentUser} />
           </div>
         </div>
       </div>

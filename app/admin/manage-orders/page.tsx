@@ -1,19 +1,19 @@
-import ManageOrdersClient from "./ManageOrdersClient";
+import ManageOrdersForm from "./ManageOrdersForm";
 
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 import NullData from "@/app/components/NullData";
 import getOrders from "@/actions/getOrders";
 
 const ManageOrders = async () => {
   const orders = await getOrders();
-  const currentUser = await getCurrentUser();
+  const activeUser = await getActiveUser();
 
-  if (!currentUser || currentUser.role !== "ADMIN") {
+  if (!activeUser || activeUser.role !== "ADMIN") {
     return <NullData title="Brak dostępu" />;
   }
   return (
     <div className="pt-8">
-      <ManageOrdersClient orders={orders} />
+      <ManageOrdersForm orders={orders} />
     </div>
   );
 };

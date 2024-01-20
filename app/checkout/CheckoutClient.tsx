@@ -22,9 +22,6 @@ const CheckoutClient = () => {
 
   const router = useRouter();
 
-  console.log("paymentIntent", paymentIntent);
-  console.log("cleintSecret", clientSecret);
-
   useEffect(() => {
     if (cartProducts) {
       setLoading(true);
@@ -79,13 +76,17 @@ const CheckoutClient = () => {
           />
         </Elements>
       )}
-      {loading && <div className="text-center dark:text-white">Ładowanie płatności</div>}
+      {loading && (
+        <div className="text-center dark:text-white">Ładowanie płatności</div>
+      )}
       {error && (
         <div className="text-center text-rose-500">Coś poszło nie tak...</div>
       )}
       {paymentSuccess && (
         <div className="flex items-center flex-col gap-4">
-          <div className="text-green-500 text-center">Płatność zrealizowana</div>
+          <div className="text-green-500 text-center">
+            Płatność zrealizowana
+          </div>
           <div className="max-w-[220px] w-full">
             <Button
               label="Twoje zamówienia"

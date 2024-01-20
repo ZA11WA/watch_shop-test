@@ -6,27 +6,27 @@ export async function getSession() {
   return await getServerSession(authOptions);
 }
 
-export async function getCurrentUser() {
+export async function getActiveUser() {
   try {
     const session = await getSession();
 
     if (!session?.user?.email) {
       return null;
     }
-    const currentUser = await prisma.user.findUnique({
+    const activeUser = await prisma.user.findUnique({
       where: {
         email: session?.user?.email,
       },
     });
 
-    if (!currentUser) {
+    if (!activeUser) {
       return null;
     }
     return {
-      ...currentUser,
-      createdAt: currentUser.createAt.toISOString(),
-      updateAt: currentUser.updateAt.toISOString(),
-      emailVerified: currentUser.emailVerified?.toISOString() || null,
+      ...activeUser,
+      createdAt: activeUser.createAt.toISOString(),
+      updateAt: activeUser.updateAt.toISOString(),
+      emailVerified: activeUser.emailVerified?.toISOString() || null,
     };
   } catch (error: any) {
     return null;

@@ -1,10 +1,10 @@
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 import NullData from "@/app/components/NullData";
 import getOrdersByUserId from "@/actions/getOrdersByUserId";
 import OrdersClient from "./OrdersClient";
 
 const Orders = async () => {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getActiveUser();
 
   if (!currentUser) {
     return <NullData title="Brak dostępu!" />;

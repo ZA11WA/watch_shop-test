@@ -10,10 +10,10 @@ import BackDrop from "./BackDrop";
 import { SafeUser } from "@/types";
 
 interface UserMenuProps {
-  currentUser: SafeUser | null;
+  activeUser: SafeUser | null;
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+const UserMenu: React.FC<UserMenuProps> = ({ activeUser: activeUser }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toogleOpen = useCallback(() => {
@@ -27,7 +27,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           onClick={toogleOpen}
           className="p-2 border-[1px] border-neutral-900-700 dark:border-neutral-700 flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700 dark:text-white"
         >
-          <Avatar src={currentUser?.image} />
+          <Avatar src={activeUser?.image} />
           <AiFillCaretDown />
         </div>
         {isOpen && (
@@ -35,9 +35,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             className="absolute rounded-md shadow-md w-[170px] bg-white dark:bg-neutral-700 overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer
           "
           >
-            {currentUser ? (
+            {activeUser ? (
               <div className="text-center">
-                {currentUser.role === "ADMIN" && (
+                {activeUser.role === "ADMIN" && (
                   <Link href="/admin">
                     <MenuItem onClick={toogleOpen}>Admin</MenuItem>
                   </Link>

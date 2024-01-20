@@ -14,11 +14,11 @@ import { useRouter } from "next/navigation";
 import { SafeUser } from "@/types";
 
 interface RegisterFormProps {
-  currentUser: SafeUser | null;
+  activeUser: SafeUser | null;
 }
 
 
-const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({activeUser: activeUser}) => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -35,7 +35,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (currentUser) {
+    if (activeUser) {
       router.push("/cart");
       router.refresh();
     }
@@ -70,7 +70,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
   };
 
 
-  if (currentUser) {
+  if (activeUser) {
     return <p className="text-center">Zalogowano pomyślnie.</p>;
   }
 

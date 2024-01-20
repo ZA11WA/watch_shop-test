@@ -1,11 +1,11 @@
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getActiveUser } from "@/actions/getActiveUser";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getActiveUser();
   if (!currentUser) return NextResponse.error();
 
   if (currentUser.role !== "ADMIN") {

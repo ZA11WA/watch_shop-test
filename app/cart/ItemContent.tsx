@@ -1,5 +1,5 @@
 'use client'
-import { formatPrice } from "@/utils/formatPrice";
+import { convertPrice } from "@/utils/convertPrice";
 import { CartProductType } from "../product/[productId]/ProductDetails";
 import Link from "next/link";
 import Image from "next/image";
@@ -40,7 +40,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           </button>
         </div>
       </div>
-      <div className="justify-self-center dark:text-white">{formatPrice(item.price)}</div>
+      <div className="justify-self-center dark:text-white">{convertPrice(item.price)}</div>
       <div className="justify-self-center dark:text-white">
         <SetQuantity
           cartCounter={true}
@@ -50,7 +50,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
         />
       </div>
       <div className="justify-self-end font-semibold dark:text-white">
-        {formatPrice(item.price * item.quantity)}
+        {convertPrice(item.price * item.quantity)}
       </div>
     </div>
   );
