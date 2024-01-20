@@ -6,11 +6,11 @@ import SetQuantity from "@/app/components/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
 import { MdCheckCircle } from "react-icons/md";
 
-import { Rating } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import toast from "react-hot-toast";
+
+import { formatPrice } from "@/utils/formatPrice";
 
 interface ProductDetailsProps {
   product: any;
@@ -115,7 +115,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         <div className="text-lg">
           <span className="font-semibold">FIRMA:</span> {product.brand}
         </div>
-        <div className={product.inStock ? "text-green-400" : "text-red-400"}>
+        <div className={product.inStock ? "text-green-400" : "text-red-600"}>
           {product.inStock
             ? "Dostępny"
             : "Niedostępny - Produkt zakupiony zostanie zarezerwowany i wysłany w ciągu 1 miesiąca."}
@@ -144,6 +144,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
               handleQtyIncrease={handleQtyIncrease}
               handleQtyDecrease={handleQtyDecrease}
             />
+            <Horizontal />
+            <div className="text-lg">
+              <span className="font-semibold">CENA:</span> {formatPrice(product.price)}
+            </div>
             <Horizontal />
             <div className="max-w-[300px]">
               <Button

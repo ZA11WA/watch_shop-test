@@ -31,7 +31,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           <Link href={`/product/${item.id}`} className="text-gray-800 dark:text-white font-semibold">
             {item.name}
           </Link>
-          <div className="text-gray-600 dark:text-white">{item.selectedImg.color}</div>
+          
           <button
             onClick={() => handleRemoveProductFromCard(item)}
             className="text-gray-500 underline focus:outline-none dark:text-white"

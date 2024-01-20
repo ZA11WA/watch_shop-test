@@ -28,7 +28,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
 }) => {
   const router = useRouter();
   const storage = getStorage(firebaseApp);
-  
+
   
 
   const handleToggleStock = useCallback((id: string, inStock: boolean) => {

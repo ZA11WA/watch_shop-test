@@ -29,8 +29,8 @@ const TextArea: React.FC<TextAreProps> = ({
         {...register(id, { required })}
         placeholder=""
         className={`peer w-full p-4 pt-6 max-h-[150px] min-h-[150px] outline-none bg-white dark:bg-neutral-900 dark:border-neutral-700 font-light border-2 rounded-md transition disabled:opacity-70 disabled:cursor-not-allowed 
-        ${errors[id] ? "border-rose-400" : "border-slate-300"}
-        ${errors[id] ? "focus:border-rose-400" : "focus:border-slate-300"}
+        ${errors[id] ? "border-red-400 dark:border-red-400" : "border-slate-300"}
+        ${errors[id] ? "focus:border-red-400 dark:focus:border-red-400" : "focus:border-slate-300"}
         `}
       />
       <label
