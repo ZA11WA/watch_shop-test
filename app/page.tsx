@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic'
+
+
 import ProductCard from "./components/products/ProductCard";
 import getProducts, { IProductParams } from "@/actions/getProducts";
 import NullData from "./components/NullData";
