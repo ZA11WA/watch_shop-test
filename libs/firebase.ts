@@ -1,12 +1,13 @@
 import { initializeApp } from "firebase/app";
 
+// Wczytaj zmienne środowiskowe z pliku .env
 const firebaseConfig = {
-  apiKey: "AIzaSyBVyWPX_w9h-203Y6IP8nsDXhT8BDjqsTM",
-  authDomain: "watch-shop-prod.firebaseapp.com",
-  projectId: "watch-shop-prod",
-  storageBucket: "watch-shop-prod.appspot.com",
-  messagingSenderId: "320222441914",
-  appId: "1:320222441914:web:ee5ba41e266d25fe086d83"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
